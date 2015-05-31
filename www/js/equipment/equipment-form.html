@@ -1,15 +1,28 @@
 <ion-view title="New Equipment">
+ <ion-nav-buttons side="right">
+<!--        <button class="button button-icon button-clear ion-search"></button>-->
+<!--        <a ui-sref="app.equipment_new" class="button button-icon button-clear ion-plus"></a>-->
+<!--        <button class="button button-clear" ng-click="save(equipment)">Save</button>-->
+      </ion-nav-buttons>
+
+
   <ion-content>
     <div class="list">
-  <label class="item item-input">
-    <input type="text" placeholder="First Name">
-  </label>
-  <label class="item item-input">
-    <input type="text" placeholder="Last Name">
-  </label>
-  <label class="item item-input">
-    <textarea placeholder="Comments"></textarea>
-  </label>
-</div>
+      <label class="item item-input">
+        <input type="text" placeholder="Brand" ng-model="equipment.brand">
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Model" ng-model="equipment.model">
+      </label>
+      <label class="item item-input">
+        <textarea placeholder="Description" ng-model="equipment.description"></textarea>
+      </label>
+      <label class="item item-input">
+        <input type="text" placeholder="Tags" ng-model="equipment.tags"></textarea>
+      </label>
+    </div>
+    <div class="padding">
+    <button class="button button-block button-dark" ng-click="save(equipment)">Add the Equipment</button>
+    </div>
   </ion-content>
 </ion-view>

@@ -3,6 +3,10 @@ angular.module('equipments')
 .controller('EquipmentFormCtrl', function($scope, pouchDB) {
 console.log('EquipmentFormCtrl');
 var db = new pouchDB('dbname');
+$scope.equipment = {};
+  $scope.save = function(equipment) {
+    console.log(equipment);
+  }
 
 //db.put({
 //  _id: 'marco@gmail.com',

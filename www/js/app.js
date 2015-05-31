@@ -24,26 +24,26 @@ angular.module('starter', ['ionic', 'starter.controllers','pouchdb','equipments'
   $stateProvider
 
   .state('app', {
-    url: "/app",
+    url: '/app',
     abstract: true,
-    templateUrl: "templates/menu.html",
+    templateUrl: 'templates/menu.html',
     controller: 'AppCtrl'
   })
 
   .state('app.dashboard', {
-    url: "/dashboard",
+    url: '/dashboard',
     views: {
       'menuContent': {
-        templateUrl: "templates/dashboard.html"
+        templateUrl: 'templates/dashboard.html'
       }
     }
   })
 
   .state('app.equipments', {
-    url: "/equipments",
+    url: '/equipments',
     views: {
       'menuContent': {
-        templateUrl: "templates/equipments.html",
+        templateUrl: 'templates/equipments.html',
         controller: 'EquipmentsCtrl'
       }
     }
@@ -60,20 +60,20 @@ angular.module('starter', ['ionic', 'starter.controllers','pouchdb','equipments'
     
     
     .state('app.playlists', {
-      url: "/playlists",
+      url: '/playlists',
       views: {
         'menuContent': {
-          templateUrl: "templates/playlists.html",
+          templateUrl: 'templates/playlists.html',
           controller: 'PlaylistsCtrl'
         }
       }
     })
 
   .state('app.single', {
-    url: "/playlists/:playlistId",
+    url: '/playlists/:playlistId',
     views: {
       'menuContent': {
-        templateUrl: "templates/playlist.html",
+        templateUrl: 'templates/playlist.html',
         controller: 'PlaylistCtrl'
       }
     }
