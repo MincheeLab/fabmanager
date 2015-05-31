@@ -7,22 +7,30 @@
 
 
   <ion-content>
-    <div class="list">
-      <label class="item item-input">
+   <ion-list>
+     <ion-item>
         <input type="text" placeholder="Brand" ng-model="equipment.brand">
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Model" ng-model="equipment.model">
-      </label>
-      <label class="item item-input">
-        <textarea placeholder="Description" ng-model="equipment.description"></textarea>
-      </label>
-      <label class="item item-input">
-        <input type="text" placeholder="Tags" ng-model="equipment.tags"></textarea>
-      </label>
-    </div>
-    <div class="padding">
-    <button class="button button-block button-dark" ng-click="save(equipment)">Add the Equipment</button>
-    </div>
+     </ion-item>
+     <ion-item>
+       <input type="text" placeholder="Model" ng-model="equipment.model">
+     </ion-item>
+     <ion-item>
+       <textarea placeholder="Description" ng-model="equipment.description"></textarea>
+     </ion-item>
+     <ion-toggle ng-model="equipment.availability" toggle-class="toggle-balanced">Available</ion-toggle>
+   </ion-list>
   </ion-content>
+
+    <ion-footer-bar>
+      <div class="button-bar">
+  <a class="button button-clear" ui-sref="app.equipments">Cancel</a>
+            <a class="button button-calm" ng-click="save(equipment)">Save</a>
+     </div>
+    </ion-footer-bar>
+
+<!--
+      <div class="bar bar-footer">
+  <button class="button button-block button-dark" ng-click="save(equipment)">Add the Equipment</button>
+</div>
+-->
 </ion-view>
