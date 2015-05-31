@@ -1,0 +1,36 @@
+  <ion-view title="Equipments">
+        <ion-nav-buttons side="right">
+<!--        <button class="button button-icon button-clear ion-search"></button>-->
+        <a ui-sref="app.equipment_new" class="button button-icon button-clear ion-plus"></a>
+      </ion-nav-buttons>
+  <ion-content>
+  
+<!--
+  <ion-tabs class="tabs-striped tabs-top tabs-calm">
+    <ion-tab title="Equipments" icon-on="ion-ios-filing" icon-off="ion-ios-filling-outline">
+          <p>tab1</p>
+      <h1>test</h1>
+      <h1>test2</h1>  
+      
+-->
+      <div class="card" ng-repeat="equipment in equipments">
+  <div class="item item-text-wrap" >
+    <h3 class="title">{{ equipment.id }}</h3>
+  </div>
+  <div class="item item-divider">
+    I'm a Footer in a Card!
+  </div>
+</div>
+    
+<!--
+    </ion-tab>
+    
+    <ion-tab>
+      another tab
+    </ion-tab>
+  </ion-tabs>
+-->
+  
+
+</ion-content>
+</ion-view>
