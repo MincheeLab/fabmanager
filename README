@@ -1,0 +1,31 @@
+Fab Manager
+
+1. introduction
+===============
+
+Fab Manager is an open-source application to help fab labs or mackerspaces to run their facility including the following activities:
+- Membership
+- Equipment
+- Material
+- Events
+- Booking (of equipment...)
+- etc...
+
+It includes also an open API that can be activated and allow to join a worldwide network of labs sharing some of their data in order to provide 
+global reports.
+
+
+2. Membership
+=============
+
+
+3. Equipment
+============
+
+
+
+
+see https://docs.google.com/document/d/1Z4QawIBaMQr_hPR_-5DO5jiZSWj2ckKI9GNj9N08keY/edit?usp=sharing for more details info.
+
+Good ideas:
+- http://openbadges.org/ 
