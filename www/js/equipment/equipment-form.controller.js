@@ -1,32 +1,23 @@
-angular.module('equipments')
+(function () {
+  'use strict';
 
-.controller('EquipmentFormCtrl', function($scope, pouchDB) {
-console.log('EquipmentFormCtrl');
-var db = new pouchDB('dbname');
-$scope.equipment = {};
-  $scope.save = function(equipment) {
-    console.log(equipment);
+  angular
+    .module('equipment')
+    .controller('EquipmentFormCtrl', EquipmentFormCtrl);
+
+  EquipmentFormCtrl.$inject = ['$scope', 'EquipmentService', '$state'];
+
+  /**
+   * @desc EquipmentFormCtrl
+   *
+   */
+  function EquipmentFormCtrl($scope, EquipmentService, $state) {
+    $scope.equipment = {};
+
+    $scope.save = function(equipment) {
+      EquipmentService.post(equipment).then(function (equipment) {
+        $state.go('app.equipments');
+      });
+    };
   }
-
-//db.put({
-//  _id: 'marco@gmail.com',
-//  name: 'MM',
-//  age: 21
-//});
-//
-//db.post({
-//  _id: 'test@gmail.com',
-//  name: 'TT',
-//  age: 12
-//});
-
-//db.allDocs().then(function(docs){
-//console.log(docs);
-//$scope.equipments = docs.rows;
-//});
-
-//db.changes().on('change', function() {
-//  console.log('Ch-Ch-Changes');
-//});
-
-});
+})();
