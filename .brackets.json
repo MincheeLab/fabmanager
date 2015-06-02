@@ -1,0 +1,6 @@
+{
+    "jscodehints.detectedExclusions": [
+        "/Users/leongmarco/development/mincheelab/fabman/www/components/material/material.service.js",
+        "/Users/leongmarco/development/mincheelab/fabman/www/components/member/member.service.js"
+    ]
+}

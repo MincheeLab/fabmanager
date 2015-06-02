@@ -16,14 +16,15 @@
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {
-
     $stateProvider
-      .state('app', {
-        url: '/app',
-        abstract: true,
-        templateUrl: 'templates/menu.html',
-        controller: 'AppCtrl'
-      })
+
+    .state('app', {
+      url: '/app',
+      abstract: true,
+      templateUrl: 'templates/menu.html',
+      controller: 'AppCtrl'
+    })
+
     .state('app.dashboard', {
       url: '/dashboard',
       views: {
@@ -32,30 +33,53 @@
         }
       }
     })
+
     .state('app.equipments', {
-        url: '/equipments?refresh',
-        views: {
-          'menuContent': {
-            templateUrl: 'components/equipment/equipments.html',
-            controller: 'EquipmentsCtrl'
-          }
+      url: '/equipments',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/equipment/equipments.html',
+          controller: 'EquipmentsCtrl'
         }
-      })
-      .state('app.equipments_new', {
-        url: '/new',
-        views: {
-          'menuContent': {
-            templateUrl: 'components/equipment/equipment-form.html',
-            controller: 'EquipmentFormCtrl'
-          }
+      }
+    })
+
+    .state('app.equipments_new', {
+      url: '/equipments/new',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/equipment/equipment-form.html',
+          controller: 'EquipmentFormCtrl'
         }
-      })
+      }
+    })
+
     .state('app.equipments.show', {
       url: '/:id',
       views: {
         'menuContent': {
           templateUrl: 'components/equipment/equipment-show.html',
           controller: 'EquipmentShowCtrl'
+        }
+      }
+    })
+
+    .state('app.materials', {
+      url: '/materials',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/material/materials.html',
+          controller: 'MaterialsCtrl'
+        }
+      }
+    })
+
+    .state('app.members', {
+      url: '/members',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/member/members.html',
+          controller: 'MembersCtrl'
         }
       }
     })
