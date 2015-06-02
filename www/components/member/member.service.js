@@ -2,17 +2,17 @@
   'use strict';
 
   angular
-    .module('equipment', [])
-    .factory('EquipmentService', EquipmentService);
+    .module('member', [])
+    .factory('MemberService', MemberService);
 
-  EquipmentService.$inject = ['pouchDB'];
+  MemberService.$inject = ['pouchDB'];
 
   /**
    * @desc AccountService
    *
    */
-  function EquipmentService(pouchDB) {
-    var db = pouchDB('equipment');
+  function MemberService(pouchDB) {
+    var db = pouchDB('member');
 
     var service = {
       get: getElement,
@@ -40,7 +40,7 @@
     function post(obj) {
       return db.post(obj);
     }
-    
+
     function changes() {
       return db.changes();
     }

@@ -6,6 +6,7 @@
   },
   "dependencies": {
     "pouchdb": "~3.5.0",
-    "angular-pouchdb": "~2.1.0"
+    "angular-pouchdb": "~2.1.0",
+    "ngCordova": "~0.1.17-alpha"
   }
 }
