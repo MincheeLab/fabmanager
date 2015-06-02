@@ -43,7 +43,7 @@ angular.module('starter', ['ionic', 'starter.controllers','pouchdb','equipment']
     url: '/equipments',
     views: {
       'menuContent': {
-        templateUrl: 'templates/equipments.html',
+        templateUrl: 'components/equipment/equipments.html',
         controller: 'EquipmentsCtrl'
       }
     }
@@ -52,11 +52,21 @@ angular.module('starter', ['ionic', 'starter.controllers','pouchdb','equipment']
     url: '/new',
     views: {
       'menuContent': {
-      templateUrl: 'js/equipment/equipment-form.html',
+      templateUrl: 'components/equipment/equipment-form.html',
       controller: 'EquipmentFormCtrl'
       }
     }
     })
+
+  .state('app.equipments.show', {
+    url: '/:id',
+    views: {
+      'menuContent': {
+        templateUrl: 'components/equipment/equipment-show.html',
+        controller: 'EquipmentShowCtrl'
+      }
+    }
+  })
     
     
     .state('app.playlists', {
