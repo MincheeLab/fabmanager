@@ -17,7 +17,7 @@
     var service = {
       load: loadData,
       get: getElement,
-      save: save, 
+      save: save,
       remove: remove,
     };
 
@@ -35,10 +35,11 @@
     }
 
     function save() {
+      var obj = JSON.parse(JSON.stringify(this));
       if (this._id) {
-        return db.put(this);
+        return db.put(obj);
       } 
-      return db.post(this);
+      return db.post(obj);
     }
 
     function remove() {
