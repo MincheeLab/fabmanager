@@ -1,6 +1,6 @@
 <ion-view title="Equipments">
   <ion-nav-buttons side="right">
-    <a ui-sref="app.equipments_new" class="button button-icon button-clear ion-plus"></a>
+    <a ui-sref="app.equipment_new" class="button button-icon button-clear ion-plus"></a>
   </ion-nav-buttons>
   <ion-content>
 
@@ -24,6 +24,12 @@
         <a class="tab-item" href="#">
           <i class="icon ion-calendar"></i> Book
         </a>
+      </div>
+    </div>
+
+    <div class="list card" ng-show="!collection.rows.length">
+      <div class="item item-body">
+        No equipment found yet. Do you want to <a ui-sref="app.equipment_new">add some</a>?
       </div>
     </div>
 

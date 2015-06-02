@@ -44,7 +44,7 @@
       }
     })
 
-    .state('app.equipments_new', {
+    .state('app.equipment_new', {
       url: '/equipments/new',
       views: {
         'menuContent': {
