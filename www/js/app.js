@@ -58,14 +58,14 @@
         }
       })
 
-      .state('app.equipments.show', {
+      .state('app.equipment_show', {
         url: '/:id',
-//        views: {
-//          'equipmentList': {
+        views: {
+          'menuContent': {
             templateUrl: 'components/equipment/equipment-show.html',
             controller: 'EquipmentShowCtrl',
-//          }
-//        },
+          }
+        },
         resolve: {
           equipment: ['EquipmentModel', '$stateParams', function (EquipmentModel, $stateParams) {
             return EquipmentModel.get($stateParams.id);
@@ -73,8 +73,8 @@
         }
       })
 
-      .state('app.equipments.show.edit', {
-        url: '/edit',
+      .state('app.equipment_edit', {
+        url: '/:id/edit',
         views: {
           'menuContent': {
             templateUrl: 'components/equipment/equipment-form.html',

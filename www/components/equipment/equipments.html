@@ -6,7 +6,7 @@
 
     <div class="list card" ng-repeat="equipment in collection.rows">
 
-      <a class="item item-body" ui-sref="app.equipments.show({id: equipment._id })">
+      <a class="item item-body" ui-sref="app.equipment_show({id: equipment._id })">
 <!--        <img class="full-image" src="img/epilogfusion32.jpg">-->
         <h2>{{ equipment.model }} <small>[{{ equipment.brand }}]</small></h2>
         <p>
