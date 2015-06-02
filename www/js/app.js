@@ -1,77 +1,76 @@
+(function () {
+  /* global cordova, StatusBar */
+  'use strict';
 
-/* global cordova, StatusBar */
-'use strict';
+  angular.module('fabman', ['ionic', 'starter.controllers', 'equipment'])
 
-// Ionic Starter App
-
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-// 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic', 'starter.controllers', 'pouchdb', 'equipment'])
-
-.run(function ($ionicPlatform) {
-  $ionicPlatform.ready(function () {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if (window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
-    }
-    if (window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
-})
-
-.config(function ($stateProvider, $urlRouterProvider) {
-
-  $urlRouterProvider.otherwise('/dashboard');
-
-  $stateProvider
-    .state('app', {
-      url: '/app',
-      abstract: true,
-      templateUrl: 'templates/menu.html',
-      controller: 'AppCtrl'
-    })
-
-  .state('app.dashboard', {
-    url: '/dashboard',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/dashboard.html'
+  .run(function ($ionicPlatform) {
+    $ionicPlatform.ready(function () {
+      if (window.cordova && window.cordova.plugins.Keyboard) {
+        cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
       }
-    }
+      if (window.StatusBar) {
+        StatusBar.styleDefault();
+      }
+    });
   })
 
-  .state('app.equipments', {
-      url: '/equipments',
+  .config(function ($stateProvider, $urlRouterProvider) {
+
+    $stateProvider
+      .state('app', {
+        url: '/app',
+        abstract: true,
+        templateUrl: 'templates/menu.html',
+        controller: 'AppCtrl'
+      })
+    .state('app.dashboard', {
+      url: '/dashboard',
       views: {
         'menuContent': {
-          templateUrl: 'templates/equipments.html',
-          controller: 'EquipmentsCtrl'
+          templateUrl: 'templates/dashboard.html'
         }
       }
     })
-    .state('app.equipments_new', {
-      url: '/new',
+    .state('app.equipments', {
+        url: '/equipments?refresh',
+        views: {
+          'menuContent': {
+            templateUrl: 'components/equipment/equipments.html',
+            controller: 'EquipmentsCtrl'
+          }
+        }
+      })
+      .state('app.equipments_new', {
+        url: '/new',
+        views: {
+          'menuContent': {
+            templateUrl: 'components/equipment/equipment-form.html',
+            controller: 'EquipmentFormCtrl'
+          }
+        }
+      })
+    .state('app.equipments.show', {
+      url: '/:id',
       views: {
         'menuContent': {
-          templateUrl: 'js/equipment/equipment-form.html',
-          controller: 'EquipmentFormCtrl'
+          templateUrl: 'components/equipment/equipment-show.html',
+          controller: 'EquipmentShowCtrl'
         }
       }
     })
 
-  .state('app.playlists', {
-    url: '/playlists',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/playlists.html',
-        controller: 'PlaylistsCtrl'
+    .state('app.playlists', {
+      url: '/playlists',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/playlists.html',
+          controller: 'PlaylistsCtrl'
+        }
       }
-    }
+    });
+
+    $urlRouterProvider.otherwise('/app/dashboard');
+
   });
-
-});
+})();

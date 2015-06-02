@@ -1,0 +1,31 @@
+<ion-view title="Equipments">
+  <ion-nav-buttons side="right">
+    <a ui-sref="app.equipments_new" class="button button-icon button-clear ion-plus"></a>
+  </ion-nav-buttons>
+  <ion-content>
+
+    <div class="list card" ng-repeat="equipment in collection.rows">
+
+      <div class="item item-body">
+<!--        <img class="full-image" src="img/epilogfusion32.jpg">-->
+        <h2>{{ equipment.model }} <small>[{{ equipment.brand }}]</small></h2>
+        <p>
+         <i class="icon" ng-class="{ 'ion-toggle-filled': equipment.doc.availability, 'ion-toggle' : !equipment.doc.availability }"></i>
+          {{ equipment.description }}
+        </p>
+      </div>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" ng-click="collection.removeOne($index)">
+          <i class="icon ion-close-circled"></i> Delete
+        </a>
+        <a class="tab-item" ui-sref="app.equipments.show({id: equipment._id })">
+          <i class="icon ion-eye"></i> View
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-calendar"></i> Book
+        </a>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>
