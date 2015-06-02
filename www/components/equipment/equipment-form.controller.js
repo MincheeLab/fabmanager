@@ -15,9 +15,8 @@
     $scope.equipment = Equipment.load({});
 
     $scope.save = function(equipment) {
-      $scope.equipment.save().then(function (equipment) {
-        EquipmentCollection.push(equipment);
-        $state.go('app.equipments');
+      equipment.save().then(function (equipment) {
+        $state.go('app.equipments',{refresh: true});
       });
     };
     

@@ -34,7 +34,8 @@
       var self = this;
       if (angular.isUndefined(filters)) {
         return db.allDocs({
-          include_docs: true
+          include_docs: true,
+          descending: true
         }).then(function(docs) {
           return self.load(docs);
         });

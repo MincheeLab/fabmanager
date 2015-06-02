@@ -35,7 +35,7 @@
     })
 
     .state('app.equipments', {
-      url: '/equipments',
+      url: '/equipments?refresh',
       views: {
         'menuContent': {
           templateUrl: 'components/equipment/equipments.html',
