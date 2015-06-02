@@ -37,7 +37,6 @@
     function save() {
       var obj = JSON.parse(JSON.stringify(this));
       if (this._id) {
-        console.log('put');
         return db.put(obj);
       } 
       return db.post(obj);

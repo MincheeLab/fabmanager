@@ -5,14 +5,14 @@
     .module('equipment')
     .controller('EquipmentFormCtrl', EquipmentFormCtrl);
 
-  EquipmentFormCtrl.$inject = ['$scope', 'EquipmentModel', 'EquipmentCollection', '$state'];
+  EquipmentFormCtrl.$inject = ['$scope', 'EquipmentModel', 'equipment', '$state'];
 
   /**
    * @desc EquipmentFormCtrl
    *
    */
-  function EquipmentFormCtrl($scope, Equipment, EquipmentCollection, $state) {
-    $scope.equipment = Equipment.load({});
+  function EquipmentFormCtrl($scope, Equipment, equipment, $state) {
+    $scope.equipment = equipment;
 
     $scope.save = function(equipment) {
       equipment.save().then(function (equipment) {
