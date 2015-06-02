@@ -17,6 +17,7 @@
     var service = {
       load: loadData,
       get: getElement,
+      save: save, 
       remove: remove,
     };
 
@@ -33,8 +34,11 @@
       return db.get(id);
     }
 
-    function post(obj) {
-      return db.post(obj);
+    function save() {
+      if (this._id) {
+        return db.put(this);
+      } 
+      return db.post(this);
     }
 
     function remove() {
