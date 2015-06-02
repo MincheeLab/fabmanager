@@ -40,7 +40,7 @@
 			window.resolveLocalFileSystemURL(imageURI, function(fileEntry) {
 		     
 //			 $cordovaFile.checkFile(fileEntry.nativeURL).then(function(sucess){console.log(success)}).catch(console.log.bind(console));
-			 $cordovaFile.readAsDataURL('/')
+			 $cordovaFile.readAsDataURL(fileEntry.nativeURL)
 			 .then(function(success) {
 			   console.log(success);
 			 })
