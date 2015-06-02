@@ -28,19 +28,37 @@
      quality: 80
     };
 
-    $scope.selectPicture = function() {
-      $cordovaImagePicker.getPictures(options)
-        .then(function (results) {
-          for (var i = 0; i < results.length; i++) {
-            var f = {
-              "content_type": "image/jpeg",
-              "data": new Blob([$cordovaFile.readAsArrayBuffer(results[i])])
-            };
-            $scope.equipment._attachments["image.jpeg"] = f;
-          }
-        }, function(error) {
-          console.log('error getting photos');
-        });
-      }
-    }
+    $scope.selectPicture = function() { 
+		var options = {
+			quality: 50,
+			destinationType: Camera.DestinationType.FILE_URI,
+			sourceType: Camera.PictureSourceType.PHOTOLIBRARY
+		};
+
+	  $cordovaCamera.getPicture(options).then(
+		function(imageURI) {
+			window.resolveLocalFileSystemURL(imageURI, function(fileEntry) {
+		     
+//			 $cordovaFile.checkFile(fileEntry.nativeURL).then(function(sucess){console.log(success)}).catch(console.log.bind(console));
+			 $cordovaFile.readAsDataURL('/')
+			 .then(function(success) {
+			   console.log(success);
+			 })
+			 .catch(console.log.bind(console))
+			 ;
+//			 console.log(du);
+//			 console.log(fileEntry);
+//				$scope.picData = fileEntry.nativeURL;
+//				$scope.ftLoad = true;
+//				var image = document.getElementById('myImage');
+//				image.src = fileEntry.nativeURL;
+  			});
+//			$ionicLoading.show({template: 'Foto acquisita...', duration:500});
+		},
+		function(err){
+//			$ionicLoading.show({template: 'Errore di caricamento...', duration:500});
+		}
+      )
+	};
+  }
 })();
