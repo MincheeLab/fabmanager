@@ -7,7 +7,7 @@
     <div class="list card" ng-repeat="equipment in collection.rows">
 
       <a class="item item-body" ui-sref="app.equipment_show({id: equipment._id })">
-<!--        <img class="full-image" src="img/epilogfusion32.jpg">-->
+        <img class="full-image" ng-src="data:image/jpeg;base64,{{ equipment._attachments['image.jpeg'].data }}">
         <h2>{{ equipment.model }} <small>[{{ equipment.brand }}]</small></h2>
         <p>
          <i class="icon" ng-class="{ 'ion-toggle-filled': equipment.doc.availability, 'ion-toggle' : !equipment.doc.availability }"></i>

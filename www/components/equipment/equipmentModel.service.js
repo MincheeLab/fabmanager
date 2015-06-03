@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('equipment', ['pouchdb'])
+    .module('equipment', ['pouchdb', 'ngCordova'])
     .factory('EquipmentModel', EquipmentModel);
 
   EquipmentModel.$inject = ['pouchDB'];
