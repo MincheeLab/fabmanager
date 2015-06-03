@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'starter.controllers', 'equipment'])
+    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material'])
 
     .run(function ($ionicPlatform) {
       $ionicPlatform.ready(function () {
