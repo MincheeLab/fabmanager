@@ -1,25 +1,29 @@
 <ion-view title="Materials">
   <ion-nav-buttons side="right">
+    <button class="button button-icon ion-ios-minus-outline" ng-click="data.shouldShowDelete = !data.shouldShowDelete"></button>
     <a ui-sref="app.material_new" class="button button-icon button-clear ion-plus"></a>
   </ion-nav-buttons>
+
   <ion-content>
-    <ion-list>
-      <label class="item item-input item-select">
+    <ion-list show-delete="data.shouldShowDelete" can-swipe="true">
+      <label class="item item-input item-select" ng-show="collection.rows.length">
         <div class="input-label">
           Material Type
         </div>
-        <select ng-model="material.type" ng-options="label for label in material.presets.materialType" ng-required>
+        <select ng-model="type" ng-options="label for label in collection.presets.materialType">
           <option>...</option>
         </select>
       </label>
-      <div class="item item-divider">Last added</div>
-      <ion-item ng-repeat="material in collection.rows" class="item-inset item-thumbnail-left">
-        <!--        <a href="#">-->
-        <img src="cover.jpg">
-        <h2>{{ material.type }}</h2>
-        <p>{{ material.color }}</p>
-        <span class="badge badge-dark">{{ material.quantity }}</span>
-        <!--        </a>-->
+      <div class="item item-divider" ng-show="collection.rows.length">Last added</div>
+      <ion-item ng-repeat="item in collection.rows |filter:type" class="item-inset item-thumbnail-left">
+        <img src="img/epilogfusion32.jpg">
+        <h2>{{ item.type }}</h2>
+        <p>{{ item.color }}</p>
+        <span class="badge badge-dark">{{ item.quantity }}</span>
+        <ion-option-button class="button-calm ion-edit" ui-sref="app.material_edit({id: item._id})"></ion-option-button>
+        <ion-option-button class="button-info ion-arrow-up-b" ng-click="item.changeQuantity(1)"></ion-option-button>
+        <ion-option-button class="button-info ion-arrow-down-b" ng-click="item.changeQuantity(-1)"></ion-option-button>
+        <ion-delete-button class="ion-minus-circled" ng-click="collection.removeOne($index)"></ion-delete-button>
       </ion-item>
     </ion-list>
 

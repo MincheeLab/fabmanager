@@ -11,13 +11,16 @@
 
   <ion-content class="has-subheader">
     <ion-list>
-      <ion-item>
+      <ion-item class="item-input item-floating-label">
+        <span class="input-label">Brand</span>
         <input type="text" placeholder="Brand" ng-model="equipment.brand">
       </ion-item>
-      <ion-item>
+      <ion-item class="item-input item-floating-label">
+        <span class="input-label">Model</span>
         <input type="text" placeholder="Model" ng-model="equipment.model">
       </ion-item>
-      <ion-item>
+      <ion-item class="item-input item-floating-label">
+        <span class="input-label">Description</span>
         <textarea placeholder="Description" ng-model="equipment.description"></textarea>
       </ion-item>
       <ion-toggle ng-model="equipment.availability" toggle-class="toggle-balanced">Available</ion-toggle>

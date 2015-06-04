@@ -30,7 +30,8 @@
       remove: remove,
       presets: _presets,
       addKeyPair: addKeyPair,
-      removeKeyPair: removeKeyPair
+      removeKeyPair: removeKeyPair,
+      changeQuantity: changeQuantity,
     };
 
     return service;
@@ -68,6 +69,11 @@
 
     function removeKeyPair(namespace, key) {
 
+    }
+
+    function changeQuantity(val) {
+      this.quantity = parseInt(this.quantity) + parseInt(val);
+      return this.save();
     }
   }
 })();

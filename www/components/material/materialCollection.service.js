@@ -14,11 +14,16 @@
   function MaterialCollection(pouchDB, MaterialModel) {
     var db = pouchDB('material');
 
+    var _presets = {
+      materialType: ['Acrylic', 'Plywood', 'MDF', 'ABS', 'PLA', 'Nylon'],
+    };
+
     var service = {
       load: loadData,
       push: pushModel,
       removeOne: removeModel,
-      getList: getList
+      getList: getList,
+      presets: _presets
     };
 
     return service;

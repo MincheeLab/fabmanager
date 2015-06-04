@@ -1,8 +1,28 @@
   <ion-view title="{{ equipment.model }}">
     <ion-content>
-      <h1>{{ equipment.model }}</h1>
-      <a class="tab-item" ui-sref="app.equipment_edit.({id: equipment._id })">
-      <i class="icon ion-edit"></i> Edit
-      </a>
+      <div class="list card">
+            <img src="img/epilogfusion32.jpg">
+        <div class="item item-body">
+          <h2>{{ equipment.model }} <small>[{{ equipment.brand }}]</small></h2>
+          <p>
+            <i class="icon" ng-class="{ 'ion-toggle-filled': equipment.doc.availability, 'ion-toggle' : !equipment.doc.availability }"></i> {{ equipment.description }}
+          </p>
+        </div>
+
+        <div class="item tabs tabs-secondary tabs-icon-left">
+    <a class="tab-item" ui-sref="app.equipment_edit({id: equipment._id})">
+      <i class="icon ion-edit"></i>
+      Edit
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-chatbox"></i>
+      Comment
+    </a>
+    <a class="tab-item" href="#">
+      <i class="icon ion-share"></i>
+      Share
+    </a>
+  </div>
+    </div>
     </ion-content>
   </ion-view>

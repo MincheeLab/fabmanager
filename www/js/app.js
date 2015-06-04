@@ -54,14 +54,14 @@
         resolve: {
           equipment: ['EquipmentModel', function (EquipmentModel) {
             return EquipmentModel.load({});
-        }]
+          }]
         }
       })
 
       .state('app.equipment_show', {
         url: '/equipment/:id',
         views: {
-          'equipment-view': {
+          'menuContent': {
             templateUrl: 'components/equipment/equipment-show.html',
             controller: 'EquipmentShowCtrl',
           }
@@ -69,7 +69,7 @@
         resolve: {
           equipment: ['EquipmentModel', '$stateParams', function (EquipmentModel, $stateParams) {
             return EquipmentModel.get($stateParams.id);
-        }]
+          }]
         }
       })
 
@@ -89,7 +89,7 @@
       })
 
       .state('app.materials', {
-        url: '/materials',
+        url: '/materials/?refresh',
         views: {
           'menuContent': {
             templateUrl: 'components/material/materials.html',
@@ -109,6 +109,21 @@
         resolve: {
           material: ['MaterialModel', function (MaterialModel) {
             return MaterialModel.load({});
+          }]
+        }
+      })
+
+      .state('app.material_edit', {
+        url: '/material_edit/:id',
+        views: {
+          'menuContent': {
+            templateUrl: 'components/material/material-form.html',
+            controller: 'MaterialFormCtrl'
+          }
+        },
+        resolve: {
+          material: ['MaterialModel', '$stateParams', function (MaterialModel, $stateParams) {
+            return MaterialModel.get($stateParams.id);
           }]
         }
       })
