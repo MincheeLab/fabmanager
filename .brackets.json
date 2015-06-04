@@ -1,6 +1,9 @@
 {
-    "jscodehints.detectedExclusions": [
-        "/Users/leongmarco/development/mincheelab/fabman/www/components/material/material.service.js",
-        "/Users/leongmarco/development/mincheelab/fabman/www/components/member/member.service.js"
-    ]
+  "language": {
+    "javascript": {
+      "linting.prefer": ["JSHint","JSCS"],
+      "linting.usePreferredOnly": true
+    }
+  },
+  "jscodehints.detectedExclusions": []
 }

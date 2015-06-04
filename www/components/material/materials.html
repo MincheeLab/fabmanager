@@ -1,8 +1,11 @@
 <ion-view title="Materials">
+<ion-nav-buttons side="right">
+      <a ui-sref="app.material_new" class="button button-icon button-clear ion-plus"></a>
+    </ion-nav-buttons>
 <ion-content>
   <div class="list card" ng-show="collection.rows.length > 0">
-      <div class="item item-body" ng-repeat="collection.rows">
-        No materials found yet. Do you want to <a ui-sref="app.material_new">add some</a>?
+      <div class="item item-body" ng-repeat="material in collection.rows">
+        oups nothing yet to display :-(
       </div>
   </div>
   <div class="list card" ng-show="!collection.rows.length">

@@ -14,11 +14,17 @@
   function MaterialModel(pouchDB) {
     var db = pouchDB('material');
 
+    var _presets = {
+      materialType: ['Acrylic', 'Plywood', 'MDF', ],
+      materialUsage: ['Hand Work', '3D Printer', 'Laser Cutter', 'CNC Milling']
+    };
+
     var service = {
       load: loadData,
       get: getElement,
       save: save,
       remove: remove,
+      presets: _presets
     };
 
     return service;

@@ -14,6 +14,11 @@
   function EquipmentModel(pouchDB) {
     var db = pouchDB('equipment');
 
+    // debug info only
+    db.info().then(function (info) {
+      console.log(info);
+    });
+
     var service = {
       load: loadData,
       get: getElement,
@@ -38,7 +43,7 @@
       var obj = JSON.parse(JSON.stringify(this));
       if (this._id) {
         return db.put(obj);
-      } 
+      }
       return db.post(obj);
     }
 

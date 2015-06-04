@@ -55,6 +55,7 @@
   "node": true,
   "globals": {
     "angular": true,
+    "cordova": true,
     "_": true,
     "confirm": true,
     "alert": true
