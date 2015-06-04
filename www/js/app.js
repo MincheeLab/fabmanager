@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member'])
+    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member', 'event'])
 
     .run(function ($ionicPlatform) {
       $ionicPlatform.ready(function () {
@@ -123,15 +123,17 @@
         }
       })
 
-      .state('app.playlists', {
-        url: '/playlists',
+      .state('app.events', {
+        url: '/events',
         views: {
           'menuContent': {
-            templateUrl: 'templates/playlists.html',
-            controller: 'PlaylistsCtrl'
+            templateUrl: 'components/event/events.html',
+            controller: 'EventsCtrl'
           }
         }
-      });
+      })
+      
+      ;
 
       $urlRouterProvider.otherwise('/app/dashboard');
 

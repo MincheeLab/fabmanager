@@ -1,0 +1,36 @@
+<ion-view title="All Events">
+<!--  <ion-content>-->
+    <ion-tabs class="tabs-positive tabs-icon-only">
+
+      <ion-tab title="Upcoming" icon-on="ion-ios-filing" icon-off="ion-ios-filing-outline">
+        <ion-content>
+          <div class="list card" ng-repeat="e in upcoming">
+            <img ng-src="{{ e.cover_image.data }}" width="400" height="200"/>
+
+          </div>
+          
+          <div class="list card">
+            <div class="item item-body">
+              All upcoming event that you can join !
+            </div>
+          </div>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab title="Workshop" icon-on="ion-ios-clock" icon-off="ion-ios-clock-outline">
+        <ion-content>
+        </ion-content>
+      </ion-tab>
+
+      <ion-tab title="Talk" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+        <ion-content>
+        </ion-content>
+      </ion-tab>
+      
+      <ion-tab title="Talk" icon-on="ion-ios-gear" icon-off="ion-ios-gear-outline">
+        <ion-content>
+        </ion-content>
+      </ion-tab>
+
+    </ion-tabs>
+</ion-view>
