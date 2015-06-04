@@ -1,17 +1,32 @@
 <ion-view title="Materials">
-<ion-nav-buttons side="right">
-      <a ui-sref="app.material_new" class="button button-icon button-clear ion-plus"></a>
-    </ion-nav-buttons>
-<ion-content>
-  <div class="list card" ng-show="collection.rows.length > 0">
-      <div class="item item-body" ng-repeat="material in collection.rows">
-        oups nothing yet to display :-(
-      </div>
-  </div>
-  <div class="list card" ng-show="!collection.rows.length">
+  <ion-nav-buttons side="right">
+    <a ui-sref="app.material_new" class="button button-icon button-clear ion-plus"></a>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Material Type
+        </div>
+        <select ng-model="material.type" ng-options="label for label in material.presets.materialType" ng-required>
+          <option>...</option>
+        </select>
+      </label>
+      <div class="item item-divider">Last added</div>
+      <ion-item ng-repeat="material in collection.rows" class="item-inset item-thumbnail-left">
+        <!--        <a href="#">-->
+        <img src="cover.jpg">
+        <h2>{{ material.type }}</h2>
+        <p>{{ material.color }}</p>
+        <span class="badge badge-dark">{{ material.quantity }}</span>
+        <!--        </a>-->
+      </ion-item>
+    </ion-list>
+
+    <div class="list card" ng-show="!collection.rows.length">
       <div class="item item-body">
         No materials found yet. Do you want to <a ui-sref="app.material_new">add some</a>?
       </div>
-  </div>
-</ion-content>
+    </div>
+  </ion-content>
 </ion-view>
