@@ -2,17 +2,17 @@
   'use strict';
 
   angular
-    .module('equipment')
-    .factory('EquipmentCollection', EquipmentCollection);
+    .module('material')
+    .factory('MaterialCollection', MaterialCollection);
 
-  EquipmentCollection.$inject = ['pouchDB', 'EquipmentModel'];
+  MaterialCollection.$inject = ['pouchDB', 'MaterialModel'];
 
   /**
    * @desc EquipmentCollection
    *
    */
-  function EquipmentCollection(pouchDB, EquipmentModel) {
-    var db = pouchDB('equipment');
+  function MaterialCollection(pouchDB, MaterialModel) {
+    var db = pouchDB('material');
 
     var service = {
       load: loadData,
@@ -25,7 +25,7 @@
 
     function loadData(collection) {
       angular.forEach(collection.rows, function(obj, idx) {
-        collection.rows[idx] = EquipmentModel.load(obj);
+        collection.rows[idx] = MaterialModel.load(obj);
       });
       return angular.extend(collection, this);
     }

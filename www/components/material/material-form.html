@@ -1,0 +1,17 @@
+<ion-view title="Material">
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <input type="text" placeholder="Name" ng-model="material.name">
+      </ion-item>
+      <ion-item>
+        <input type="text" placeholder="Price Per Unit" ng-model="material.price_per_unit">
+      </ion-item>
+      <ion-item>
+        <textarea placeholder="Description" ng-model="material.description"></textarea>
+      </ion-item>
+      <ion-toggle ng-model="material.availability" toggle-class="toggle-balanced">Available</ion-toggle>
+      <a class="button button-calm" ng-click="selectPicture()">SelectPicture</a>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -11,8 +11,14 @@
           <h2>{{ equipment.model }} <small>[{{ equipment.brand }}]</small></h2>
           <p>
             <i class="icon" ng-class="{ 'ion-toggle-filled': equipment.doc.availability, 'ion-toggle' : !equipment.doc.availability }"></i> {{ equipment.description }}
-
           </p>
+      </a>
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" ng-click="collection.removeOne($index)">
+          <i class="icon ion-close"></i> Delete
+        </a>
+        <a class="tab-item" href="#">
+          <i class="icon ion-calendar"></i> Book
         </a>
         <div class="item tabs tabs-secondary tabs-icon-left">
           <a class="tab-item" ng-click="collection.removeOne($index)">

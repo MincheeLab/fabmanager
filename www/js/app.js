@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'starter.controllers', 'equipment'])
+    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member'])
 
     .run(function ($ionicPlatform) {
       $ionicPlatform.ready(function () {
@@ -84,7 +84,7 @@
         resolve: {
           equipment: ['EquipmentModel', '$stateParams', function (EquipmentModel, $stateParams) {
             return EquipmentModel.get($stateParams.id);
-        }]
+          }]
         }
       })
 
@@ -95,6 +95,21 @@
             templateUrl: 'components/material/materials.html',
             controller: 'MaterialsCtrl'
           }
+        }
+      })
+      
+      .state('app.material_new', {
+        url: '/material/new',
+        views: {
+          'menuContent': {
+            templateUrl: 'components/material/material-form.html',
+            controller: 'MaterialFormCtrl'
+          }
+        },
+        resolve: {
+          material: ['MaterialModel', function (MaterialModel) {
+            return MaterialModel.load({});
+          }]
         }
       })
 

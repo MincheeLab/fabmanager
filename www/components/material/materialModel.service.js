@@ -2,17 +2,17 @@
   'use strict';
 
   angular
-    .module('equipment', ['pouchdb', 'ngCordova'])
-    .factory('EquipmentModel', EquipmentModel);
+    .module('material', ['pouchdb', 'ngCordova'])
+    .factory('MaterialModel', MaterialModel);
 
-  EquipmentModel.$inject = ['pouchDB'];
+  MaterialModel.$inject = ['pouchDB'];
 
   /**
    * @desc EquipmentModel
    *
    */
-  function EquipmentModel(pouchDB) {
-    var db = pouchDB('equipment');
+  function MaterialModel(pouchDB) {
+    var db = pouchDB('material');
 
     var service = {
       load: loadData,
