@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('material', [])
+    .module('material')
     .factory('MaterialService', MaterialService);
 
   MaterialService.$inject = ['pouchDB'];

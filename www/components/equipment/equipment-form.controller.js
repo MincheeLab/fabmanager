@@ -36,10 +36,10 @@
 
 	  $cordovaCamera.getPicture(options).then(
 		function(dataURL) {
-			$scope.equipment._attachments = {"image.jpeg": {"data": dataURL, "contentType":"image/jpeg" }};
+          $scope.equipment._attachments = {"image.jpeg": {"data": dataURL, "contentType":"image/jpeg" }};
 		},
 		function(err){
-//			$ionicLoading.show({template: 'Errore di caricamento...', duration:500});
+		  
 		}
       )
 	};
