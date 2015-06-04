@@ -59,9 +59,9 @@
       })
 
       .state('app.equipment_show', {
-        url: '/:id',
+        url: '/equipment/:id',
         views: {
-          'menuContent': {
+          'equipment-view': {
             templateUrl: 'components/equipment/equipment-show.html',
             controller: 'EquipmentShowCtrl',
           }
