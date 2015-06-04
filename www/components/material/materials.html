@@ -6,14 +6,13 @@
 
   <ion-content>
     <ion-list show-delete="data.shouldShowDelete" can-swipe="true">
-      <label class="item item-input item-select" ng-show="collection.rows.length">
-        <div class="input-label">
-          Material Type
-        </div>
+      <ion-item class="item-input item-select" ng-show="collection.rows.length">
+        <span class="input-label">Material Type</span>
         <select ng-model="type" ng-options="label for label in collection.presets.materialType">
           <option>...</option>
         </select>
-      </label>
+      </ion-item>
+
       <div class="item item-divider" ng-show="collection.rows.length">Last added</div>
       <ion-item ng-repeat="item in collection.rows |filter:type" class="item-inset item-thumbnail-left">
         <img src="img/epilogfusion32.jpg">

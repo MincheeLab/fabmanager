@@ -14,11 +14,6 @@
   function EquipmentModel(pouchDB) {
     var db = pouchDB('equipment');
 
-    // debug info only
-    db.info().then(function (info) {
-      console.log(info);
-    });
-
     var service = {
       load: loadData,
       get: getElement,
