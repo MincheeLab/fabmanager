@@ -1,17 +1,85 @@
-<ion-view title="Material">
-  <ion-content>
-    <ion-list>
-      <ion-item>
-        <input type="text" placeholder="Name" ng-model="material.name">
-      </ion-item>
-      <ion-item>
-        <input type="text" placeholder="Price Per Unit" ng-model="material.price_per_unit">
-      </ion-item>
-      <ion-item>
-        <textarea placeholder="Description" ng-model="material.description"></textarea>
-      </ion-item>
-      <ion-toggle ng-model="material.availability" toggle-class="toggle-balanced">Available</ion-toggle>
-      <a class="button button-calm" ng-click="selectPicture()">SelectPicture</a>
-    </ion-list>
-  </ion-content>
+<ion-view>
+  <ion-nav-buttons side="right">
+    <a ui-sref="app.material_new" class="button button-icon button-clear" ng-click="save(material)">Save</a>
+  </ion-nav-buttons>
 </ion-view>
+
+<ion-tabs class="tabs-icon-top tabs-positive tabs-top">
+
+  <ion-tab title="Info" icon="ion-ios-information">
+    <ion-view>
+      <ion-content>
+        <ion-list>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Material Type
+            </div>
+            <select ng-model="material.type" ng-options="label for label in material.presets.materialType" ng-required>
+              <option>...</option>
+            </select>
+          </label>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Color
+            </div>
+            <select ng-model="material.color" ng-options="label for label in material.presets.materialColor">
+              <option value="">...</option>
+            </select>
+          </label>
+          <ion-item>
+            <input type="text" placeholder="Quantity" ng-model="material.quantity">
+          </ion-item>
+          <div class="item item-divider">
+            Usage
+          </div>
+          <ion-checkbox ng-model="material.usage" ng-repeat="item in material.presets.materialUsage" ng-required>{{item}}</ion-checkbox>
+        </ion-list>
+      </ion-content>
+  </ion-tab>
+
+  <ion-tab title="Tech" icon="ion-android-options">
+    <ion-view>
+      <ion-content>
+        <ion-list>
+          <label class="item item-input item-stacked-label" ng-repeat="(k, v) in material.techPair">
+            <span class="input-label">{{k}}</span>
+            <input type="text" ng-model="material.techPair[k]" placeholder="{{k}}" value="{{v}}">
+          </label>
+          <label class="item item-input item-select item-icon-left">
+           
+            <div class="input-label">
+<!--             <i class="icon ion-plus"></i> -->
+<!--             &nbsp; &nbsp; &nbsp; &nbsp;-->
+              Add a Technical Information
+            </div>
+            <select ng-model="techPair" ng-options="label for label in material.presets.techPair" ng-change="material.addKeyPair('techPair',techPair)">
+              <option>...pick one...</option>
+            </select>
+          </label>
+        </ion-list>
+      </ion-content>
+    </ion-view>
+  </ion-tab>
+
+  <ion-tab title="Finance" icon="ion-social-bitcoin">
+    <ion-view>
+      <ion-content>
+        <ion-list>
+          <label class="item item-input item-select">
+            <div class="input-label">
+              Add a Financial Key
+            </div>
+            <select ng-model="financialPair" ng-options="label for label in material.presets.financialPair" ng-change="material.addKeyPair('financialPair',financialPair)">
+              <option value="">...</option>
+            </select>
+          </label>
+          <label class="item item-input item-stacked-label" ng-repeat="(k, v) in material.financialPair">
+            <span class="input-label">{{k}}</span>
+            <input type="text" ng-model="material.techPair[k]" placeholder="{{k}}" value="{{v}}">
+          </label>
+        </ion-list>
+      </ion-content>
+    </ion-view>
+  </ion-tab>
+
+</ion-tabs>

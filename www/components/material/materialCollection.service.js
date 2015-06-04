@@ -51,7 +51,7 @@
 
     function removeModel(index) {
       var self = this;
-      this.rows[index].remove().then(function(){
+      this.rows[index].remove().then(function() {
         self.rows.splice(index, 1);
       });
     }
