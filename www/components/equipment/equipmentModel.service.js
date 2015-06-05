@@ -38,11 +38,15 @@
     }
 
     function save() {
-      var obj = JSON.parse(JSON.stringify(this));
       if (this._id) {
-        return db.put(obj);
+        this._id = new Date().toJSON();
       }
-      return db.post(obj);
+      var item = JSON.parse(JSON.stringify(this));
+      return db.put(item)
+            .catch(function(err) {
+              console.log(err);
+            });
+      }
     }
 
     function remove() {

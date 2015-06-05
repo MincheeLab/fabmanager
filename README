@@ -1,15 +1,13 @@
-Fab Manager
+Manage My Lab
 
 1. introduction
 ===============
 
-Fab Manager is an open-source application to help fab labs or mackerspaces to run their facility including the following activities:
-- Membership
-- Equipment
-- Material
+Manage My Lab is an open-source application to help fab labs and consors (makerspaces...) to run their facility including the following activities:
+- Equipment and booking
+- Material and selling
 - Events
-- Booking (of equipment...)
-- etc...
+- Membership
 
 It includes also an open API that can be activated and allow to join a worldwide network of labs sharing some of their data in order to provide 
 global reports.

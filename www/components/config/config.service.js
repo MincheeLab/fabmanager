@@ -2,17 +2,19 @@
   'use strict';
 
   angular
-    .module('admin', ['pouchdb'])
-    .factory('AdminService', AdminService);
+    .module('config', ['pouchdb'])
+    .factory('ConfigService', ConfigService);
 
-  AdminService.$inject = ['pouchDB'];
+  ConfigService.$inject = ['pouchDB'];
 
   /**
-   * @desc AdminService
+   * @desc ConfigService
    *
    */
-  function AdminService(pouchDB) {
-    var db = pouchDB('admin');
+  function ConfigService(pouchDB) {
+    var db = pouchDB('config');
+    //var local = new PouchDB('local_db');
+    //local.sync(db, {live: true, retry: true}).on('error', console.log.bind(console));
 
     var _presets = {
       materialType: ['Acrylic', 'Plywood', 'MDF', 'ABS', 'PLA', 'Nylon'],
@@ -22,6 +24,27 @@
       financialPair: ['Unit', 'Cost per Unit', 'Supplier', 'Sourcing Price'],
       units: ['gram', 'meter', 'm(2)']
     };
+
+    //    function createDesignDoc(name, mapFunction) {
+    //  var ddoc = {
+    //    _id: '_design/' + name,
+    //    views: {
+    //    }
+    //  };
+    //  ddoc.views[name] = { map: mapFunction.toString() };
+    //  return ddoc;
+    //}
+    //
+    //var designDoc = createDesignDoc('my_index', function (doc) {
+    //  emit(doc.name);
+    //});
+    //pouch.put(designDoc).then(function (doc) {
+    //  // design doc created!
+    //}).catch(function (err) {
+    //  // if err.name === 'conflict', then
+    //  // design doc already exists
+    //});
+
 
     // debug info only
     db.info().then(function (info) {

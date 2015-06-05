@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member', 'event', 'admin'])
+    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member', 'event', 'config'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -34,17 +34,17 @@
       url: '/about',
       views: {
         'menuContent': {
-          templateUrl: 'components/admin/about.html',
+          templateUrl: 'templates/about.html',
         }
       }
     })
 
-    .state('app.admin', {
-      url: '/admin',
+    .state('app.config', {
+      url: '/config',
       views: {
         'menuContent': {
-          templateUrl: 'components/admin/admin.html',
-          controller: 'AdminCtrl'
+          templateUrl: 'components/config/config.html',
+          controller: 'ConfigCtrl'
         }
       }
     })
