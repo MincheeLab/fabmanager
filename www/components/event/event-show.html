@@ -1,0 +1,17 @@
+<ion-view title="{{ e.title }}">
+  <ion-content>
+    <div class="card">
+
+      <a class="item item-image"  ui-sref="app.event_show({id: e._id })">
+        <img ng-src="{{ e.cover_image.data }}">
+      </a>
+
+      <div class="item">
+         <h2>{{ e.title }}</h2>
+         <div><i class="ion-clock"></i> <span>{{ e.getDateTime() | date:'EEEE, MMMM d, y h:mm:ss a' }}</span></div>
+          <div><i class="ion-ios-location" style="margin-left: 2px;margin-right: 2px;"></i> {{ e.location.name }}</div>
+      </div>
+
+    </div>
+  </ion-content>
+</ion-view>

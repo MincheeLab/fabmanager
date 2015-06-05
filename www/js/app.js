@@ -133,6 +133,38 @@
         }
       })
       
+      .state('app.event_show', {
+        url: '/events/:id',
+        views: {
+          'menuContent': {
+            templateUrl: 'components/event/event-show.html',
+            controller: 'EventShowCtrl'
+          }
+        },
+        resolve: {
+          event: ['EventModel', '$stateParams', function(EventModel, $stateParams) {
+            EventModel.get($stateParams.id).then(function(e) {
+              return EventModel.load(e);
+            });
+          }]
+        }
+      })
+      
+      .state('app.event_new', {
+        url: '/events/new',
+        views: {
+          'menuContent': {
+            templateUrl: 'components/event/event-form.html',
+            controller: 'EventFormCtrl'
+          }
+        },
+        resolve: {
+          event: ['EventModel', function(EventModel) {
+            return EventModel.load({});
+          }]
+        }
+      })
+      
       ;
 
       $urlRouterProvider.otherwise('/app/dashboard');
