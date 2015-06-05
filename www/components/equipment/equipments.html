@@ -1,41 +1,26 @@
-<ion-view title="Equipments" name="equipmentList">
+<ion-view title="Equipment" name="equipmentList">
   <ion-nav-buttons side="right">
     <a ui-sref="app.equipment_new" class="button button-icon button-clear ion-plus"></a>
   </ion-nav-buttons>
   <ion-content>
     <ion-nav-view name="equipment-view">
       <div class="list card" ng-repeat="equipment in collection.rows">
-
-        <a class="item item-body" ui-sref="app.equipment_show({id: equipment._id })">
-          <!--        <img class="full-image" src="img/epilogfusion32.jpg">-->
-          <h2>{{ equipment.model }} <small>[{{ equipment.brand }}]</small></h2>
-          <p>
-            <i class="icon" ng-class="{ 'ion-toggle-filled': equipment.doc.availability, 'ion-toggle' : !equipment.doc.availability }"></i> {{ equipment.description }}
-          </p>
+        <a ui-sref="app.equipment_show({id: equipment._id })" class="item item-image">
+          <img src="img/epilogfusion32.jpg">
         </a>
-        <div class="item tabs tabs-secondary tabs-icon-left">
-          <a class="tab-item" ng-click="collection.removeOne($index)">
-            <i class="icon ion-close"></i> Delete
-          </a>
-          <a class="tab-item" href="#">
-            <i class="icon ion-calendar"></i> Book
-          </a>
-          <div class="item tabs tabs-secondary tabs-icon-left">
-            <a class="tab-item" ng-click="collection.removeOne($index)">
-              <i class="icon ion-close"></i> Delete
-            </a>
-            <a class="tab-item" href="#">
-              <i class="icon ion-calendar"></i> Book
-            </a>
-          </div>
+        <a class="item item-body" ui-sref="app.equipment_show({id: equipment._id })">
+          <p ng-show="equipment.code" style="float:right">
+            {{ equipment.code }}
+          </p>
+          <h2 style="margin-bottom:0px">{{ equipment.model }}</h2>
+          <p style="margin-top:0px">by {{ equipment.brand }}</p>
+        </a>
+      </div>
+      <div class="list card" ng-show="!collection.rows.length">
+        <div class="item item-body">
+          No equipment found yet. Do you want to <a ui-sref="app.equipment_new">add some</a>?
         </div>
-
-        <div class="list card" ng-show="!collection.rows.length">
-          <div class="item item-body">
-            No equipment found yet. Do you want to <a ui-sref="app.equipment_new">add some</a>?
-          </div>
-        </div>
+      </div>
     </ion-nav-view>
   </ion-content>
-
 </ion-view>

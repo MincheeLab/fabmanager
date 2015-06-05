@@ -5,16 +5,23 @@
     .module('material')
     .controller('MaterialFormCtrl', MaterialFormCtrl);
 
-  MaterialFormCtrl.$inject = ['$scope', 'material', '$cordovaCamera', '$cordovaFile'];
+  MaterialFormCtrl.$inject = [
+    '$scope',
+    'material',
+    'presets',
+    '$state',
+    '$cordovaCamera',
+    '$cordovaFile'
+  ];
 
-  function MaterialFormCtrl($scope, material, $cordovaCamera, $cordovaFile) {
+  function MaterialFormCtrl($scope, material, presets, $state, $cordovaCamera, $cordovaFile) {
     $scope.material = material;
-    if (!angular.isDefined($scope.material.techPair)) { $scope.material.techPair = {}; }
-    
+    $scope.presets = presets;
+
     $scope.save = function(e) {
       e.save().then(function(e) {
-        
+        $state.go('app.materials', {refresh: true});
       });
-    }
+    };
   }
 })();
