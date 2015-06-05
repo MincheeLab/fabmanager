@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member', 'admin'])
+    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member', 'event', 'admin'])
 
   .run(function ($ionicPlatform) {
     $ionicPlatform.ready(function () {
@@ -142,6 +142,48 @@
       }
     })
 
+      .state('app.events', {
+      url: '/events',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/event/events.html',
+          controller: 'EventsCtrl'
+        }
+      }
+    })
+
+    .state('app.event_show', {
+      url: '/events/:id',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/event/event-show.html',
+          controller: 'EventShowCtrl'
+        }
+      },
+      resolve: {
+        event: ['EventModel', '$stateParams', function(EventModel, $stateParams) {
+          EventModel.get($stateParams.id).then(function(e) {
+            return EventModel.load(e);
+          });
+        }]
+      }
+    })
+
+    .state('app.event_new', {
+      url: '/events/new',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/event/event-form.html',
+          controller: 'EventFormCtrl'
+        }
+      },
+      resolve: {
+        event: ['EventModel', function(EventModel) {
+          return EventModel.load({});
+        }]
+      }
+    })
+      
     .state('app.material_edit', {
       url: '/material_edit/:id',
       views: {

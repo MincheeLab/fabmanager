@@ -1,0 +1,66 @@
+<form name="eventForm" novalidate>
+  <ion-view title="{{ newEventTitle || 'Event' }}">
+    <ion-content>
+      <div class="list">
+        <label class="item item-stacked-label item-select">
+          <span class="input-label">Type</span>
+          <select>
+            <option value="workshop" selected>Workshop</option>
+            <option value="talk">Talk</option>
+            <option value="hackathon">Hackathon</option>
+          </select>
+        </label>
+        
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Title</span>
+          <input type="text" placeholder="Title" ng-model="e.title" required>
+        </label>
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Location</span>
+          <input type="text" placeholder="Location" ng-model="e.location.name" required>
+        </label>
+        
+        <div class="row">
+          <div class="col" >
+            <label class="item item-input item-stacked-label" style="border:0;">
+              <span class="input-label"><b>FROM</b> &nbsp;&nbsp;date</span>
+              <input type="date" placeholder="From date" ng-model="e.from.date" required>
+            </label>
+          </div>
+          <div class="col">
+            <label class="item item-input item-stacked-label" style="border:0;">
+              <span class="input-label">time</span>
+              <input type="time" placeholder="time" ng-model="e.from.time" required>
+            </label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div class="col">
+            <label class="item item-input item-stacked-label" style="border:0;">
+              <span class="input-label"><b>UNTIL</b> &nbsp;&nbsp;date</span>
+              <input type="date" placeholder="To date" ng-model="e.to.date" required>
+            </label>
+          </div>
+          <div class="col">
+            <label class="item item-input item-stacked-label" style="border:0;">
+              <span class="input-label">time</span>
+              <input type="time" placeholder="time" ng-model="e.to.time" required>
+            </label>
+          </div>
+        </div>
+
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Description</span>
+          <textarea placeholder="Write some description"></textarea>
+        </label>
+      </div>
+    </ion-content>
+    <ion-footer-bar>
+      <div class="button-bar">
+        <a class="button button-clear" ng-click="e.title = undefined" ui-sref="app.events">Cancel</a>
+        <a class="button button-calm" ng-disabled="eventForm.$invalid" ng-click="save(e)">Save</a>
+      </div>
+    </ion-footer-bar>
+  </ion-view>
+</form>
