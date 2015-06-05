@@ -2,16 +2,16 @@
   'use strict';
 
   angular
-    .module('equipment', ['pouchdb', 'ngCordova'])
+    .module('equipment', ['pouchdb', 'config', 'ngCordova'])
     .factory('EquipmentModel', EquipmentModel);
 
-  EquipmentModel.$inject = ['pouchDB'];
+  EquipmentModel.$inject = ['pouchDB', 'ConfigService'];
 
   /**
    * @desc EquipmentModel
    *
    */
-  function EquipmentModel(pouchDB) {
+  function EquipmentModel(pouchDB, ConfigService) {
     var db = pouchDB('equipment');
 
     var service = {
@@ -32,7 +32,7 @@
 
     function getElement(id) {
       var self = this;
-      return db.get(id).then(function(item) {
+      return db.get(id).then(function (item) {
         return self.load(item);
       });
     }
@@ -43,10 +43,9 @@
       }
       var item = JSON.parse(JSON.stringify(this));
       return db.put(item)
-            .catch(function(err) {
-              console.log(err);
-            });
-      }
+        .catch(function (err) {
+          console.log(err);
+        });
     }
 
     function remove() {

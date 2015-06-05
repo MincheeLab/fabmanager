@@ -3,9 +3,10 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member', 'event', 'config'])
+    .module('fabman', ['ionic', 'equipment', 'material', 'member', 'event', 'config'])
 
   .run(function ($ionicPlatform) {
+
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -24,8 +25,8 @@
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl',
         resolve: {
-          presets: ['AdminService', function(AdminService) {
-            return AdminService.getPresets();
+          presets: ['ConfigService', function(ConfigService) {
+            return ConfigService.getPresets();
           }]
         }
       })
@@ -183,7 +184,7 @@
         }]
       }
     })
-      
+
     .state('app.material_edit', {
       url: '/material_edit/:id',
       views: {

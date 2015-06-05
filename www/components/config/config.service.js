@@ -13,8 +13,9 @@
    */
   function ConfigService(pouchDB) {
     var db = pouchDB('config');
-    //var local = new PouchDB('local_db');
-    //local.sync(db, {live: true, retry: true}).on('error', console.log.bind(console));
+
+    //var remote = new PouchDB('https://...');
+    //db.sync(remote, {live: true, retry: true}).on('error', console.log.bind(console));
 
     var _presets = {
       materialType: ['Acrylic', 'Plywood', 'MDF', 'ABS', 'PLA', 'Nylon'],
