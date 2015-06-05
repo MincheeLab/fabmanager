@@ -23,15 +23,18 @@
 
     return service;
 
-    function loadData(obj) {
-      if (angular.isObject(obj.doc)) {
-        return angular.extend(obj.doc, this);
+    function loadData(item) {
+      if (angular.isObject(item.doc)) {
+        return angular.extend(item.doc, this);
       }
-      return angular.extend(obj, this);
+      return angular.extend(item, this);
     }
 
     function getElement(id) {
-      return db.get(id);
+      var self = this;
+      return db.get(id).then(function(item) {
+        return self.load(item);
+      });
     }
 
     function save() {

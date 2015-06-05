@@ -13,7 +13,7 @@
    */
   function EquipmentFormCtrl($scope, equipment, $state, $cordovaCamera, $cordovaFile) {
     $scope.equipment = equipment;
-
+console.log($scope.equipment);
     $scope.save = function(equipment) {
       equipment.save().then(function (equipment) {
         $state.go('app.equipments',{refresh: true});
