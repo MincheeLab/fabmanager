@@ -15,7 +15,7 @@
               <div class="input-label">
                 Material Type
               </div>
-              <select ng-model="material.type" ng-options="label for label in material.presets.materialType" ng-required required>
+              <select ng-model="material.type" ng-options="label for label in presets.materialType" required>
                 <option>...</option>
               </select>
             </label>
@@ -23,18 +23,18 @@
               <div class="input-label">
                 Color
               </div>
-              <select ng-model="material.color" ng-options="label for label in material.presets.materialColor">
+              <select ng-model="material.color" ng-options="label for label in presets.materialColor">
                 <option value="">...</option>
               </select>
             </label>
             <label class="item item-input item-floating-label">
               <span class="input-label">Quantity</span>
-              <input type="text" placeholder="Quantity" ng-model="material.quantity" ng-required>
+              <input type="text" placeholder="Quantity" ng-model="material.quantity" required>
             </label>
             <div class="item item-divider">
               Usage
             </div>
-            <ion-checkbox ng-model="material.usage" ng-repeat="item in material.presets.materialUsage" ng-required>{{item}}</ion-checkbox>
+            <ion-checkbox ng-repeat="item in presets.materialUsage" checklist-model="material.usage" checklist-value="item" required>{{item}}</ion-checkbox>
           </ion-list>
         </ion-content>
     </ion-tab>
@@ -54,7 +54,7 @@
                 <!--             &nbsp; &nbsp; &nbsp; &nbsp;-->
                 Add a Technical Information
               </div>
-              <select ng-model="techPair" ng-options="label for label in material.presets.techPair" ng-change="material.addKeyPair('techPair',techPair)">
+              <select ng-model="techPair" ng-options="label for label in presets.techPair" ng-change="material.addKeyPair('techPair',techPair)">
                 <option>...pick one...</option>
               </select>
             </label>
@@ -69,7 +69,7 @@
           <ion-list>
            <ion-item class="item-input item-select">
              <span class="input-label">Add a Financial Key</span>
-             <select ng-model="financialPair" ng-options="label for label in material.presets.financialPair" ng-change="material.addKeyPair('financialPair',financialPair)">
+             <select ng-model="financialPair" ng-options="label for label in presets.financialPair" ng-change="material.addKeyPair('financialPair',financialPair)">
                 <option value="">...</option>
               </select>
            </ion-item>

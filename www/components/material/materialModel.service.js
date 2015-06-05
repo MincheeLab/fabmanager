@@ -14,21 +14,11 @@
   function MaterialModel(pouchDB) {
     var db = pouchDB('material');
 
-    var _presets = {
-      materialType: ['Acrylic', 'Plywood', 'MDF', 'ABS', 'PLA', 'Nylon'],
-      materialColor: ['Natural', 'White', 'Black'],
-      materialUsage: ['Hand Work', '3D Printer', 'Laser Cutter', 'CNC Milling'],
-      techPair: ['Size', 'Weight', 'Thickness'],
-      financialPair: ['Unit', 'Cost per Unit', 'Supplier', 'Sourcing Price'],
-      units: ['gram', 'meter', 'm(2)']
-    };
-
     var service = {
       load: loadData,
       get: getElement,
       save: save,
       remove: remove,
-      presets: _presets,
       addKeyPair: addKeyPair,
       removeKeyPair: removeKeyPair,
       changeQuantity: changeQuantity,
@@ -48,7 +38,6 @@
     }
 
     function save() {
-      console.log('saving');
       var obj = JSON.parse(JSON.stringify(this));
       if (this._id) {
         return db.put(obj);

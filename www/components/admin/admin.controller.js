@@ -10,11 +10,12 @@
   function AdminCtrl($scope, AdminService) {
 
     AdminService.getList().then(function (docs) {
-      $scope.collection = docs;
+      $scope.admin = docs;
+      $scope.lab   = docs.rows;
     });
 
     $scope.save = function() {
       console.log('saved!');
-    }
+    };
   }
 })();
