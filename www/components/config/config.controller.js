@@ -5,17 +5,15 @@
     .module('config')
     .controller('ConfigCtrl', ConfigCtrl);
 
-  ConfigCtrl.$inject = ['$scope', 'ConfigService'];
+  ConfigCtrl.$inject = ['$scope', 'config', 'presets', 'ConfigService'];
 
-  function ConfigCtrl($scope, ConfigService) {
+  function ConfigCtrl($scope, config, presets, ConfigService) {
 
-    ConfigService.getList().then(function (docs) {
-      $scope.config = docs;
-      $scope.lab   = docs.rows;
-    });
+    $scope.config = config || ConfigService.loadConfig();
+    $scope.presets = presets || ConfigService.loadPresets();
 
-    $scope.save = function() {
-      console.log('saved!');
+    $scope.save = function (config, presets) {
+      ConfigService.save([config, presets]).catch(console.log.bind(console));
     };
   }
 })();

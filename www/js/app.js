@@ -3,7 +3,7 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'equipment', 'material', 'member', 'event', 'config'])
+    .module('fabman', ['ionic', 'config', 'equipment', 'material', 'member', 'event', 'booking'])
 
   .run(function ($ionicPlatform) {
 
@@ -18,6 +18,9 @@
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {
+
+    var defaultRoute = '/app/dashboard';
+
     $stateProvider
       .state('app', {
         url: '/app',
@@ -25,11 +28,23 @@
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl',
         resolve: {
-          presets: ['ConfigService', function(ConfigService) {
+          config: ['ConfigService', function (ConfigService) {
+            return ConfigService.getConfig();
+          }],
+          presets: ['ConfigService', function (ConfigService) {
             return ConfigService.getPresets();
           }]
         }
       })
+
+    .state('wizard', {
+      url: '/setup',
+      templateUrl: 'components/config/setup.html',
+      controller: 'SetupCtrl'
+    })
+    //.state('wizard.step1',{})
+    //.state('wizard.step2', {})
+    //.state('wizard.step3', {})
 
     .state('app.about', {
       url: '/about',
@@ -47,6 +62,14 @@
           templateUrl: 'components/config/config.html',
           controller: 'ConfigCtrl'
         }
+      },
+      resolve: {
+        config: ['config', function (config) {
+          return config;
+        }],
+        presets: ['presets', function(presets) {
+          return presets;
+        }]
       }
     })
 
@@ -114,6 +137,31 @@
       }
     })
 
+    .state('app.bookings_upcoming', {
+      url: '/bookings_upcoming/:id?name',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/booking/bookings-upcoming.html',
+          controller: 'BookingsUpcomingCtrl'
+        }
+      }
+    })
+
+    .state('app.booking_new', {
+      url: '/booking_new/:id/?name',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/booking/booking-form.html',
+          controller: 'BookingFormCtrl'
+        }
+      },
+      resolve: {
+        equipment: ['BookingModel', function (BookingModel) {
+          return BookingModel.load({});
+        }]
+      }
+    })
+
     .state('app.materials', {
       url: '/materials/?refresh',
       views: {
@@ -123,7 +171,9 @@
         }
       },
       resolve: {
-        presets: function(presets) { return presets; }
+        presets: function (presets) {
+          return presets;
+        }
       }
     })
 
@@ -139,11 +189,13 @@
         material: ['MaterialModel', function (MaterialModel) {
           return MaterialModel.load({});
         }],
-        presets: function(presets) { return presets; }
+        presets: function (presets) {
+          return presets;
+        }
       }
     })
 
-      .state('app.events', {
+    .state('app.events', {
       url: '/events',
       views: {
         'menuContent': {
@@ -162,8 +214,8 @@
         }
       },
       resolve: {
-        event: ['EventModel', '$stateParams', function(EventModel, $stateParams) {
-          EventModel.get($stateParams.id).then(function(e) {
+        event: ['EventModel', '$stateParams', function (EventModel, $stateParams) {
+          EventModel.get($stateParams.id).then(function (e) {
             return EventModel.load(e);
           });
         }]
@@ -179,7 +231,7 @@
         }
       },
       resolve: {
-        event: ['EventModel', function(EventModel) {
+        event: ['EventModel', function (EventModel) {
           return EventModel.load({});
         }]
       }
@@ -220,7 +272,6 @@
       }
     });
 
-    $urlRouterProvider.otherwise('/app/dashboard');
-
+    $urlRouterProvider.otherwise(defaultRoute);
   });
 })();

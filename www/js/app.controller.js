@@ -5,9 +5,9 @@
     .module('fabman')
     .controller('AppCtrl', AppCtrl);
 
-  AppCtrl.$inject = ['$scope', 'ConfigService', '$ionicModal'];
+  AppCtrl.$inject = ['$scope', '$state', '$ionicModal', 'config', 'presets'];
 
-  function AppCtrl($scope, ConfigService, $ionicModal) {
+  function AppCtrl($scope, $state, $ionicModal, config, presets) {
 
     /* if first time run => setup wizard
      if only local db => display dashboard with local data

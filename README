@@ -1,5 +1,14 @@
 Manage My Lab
 
+
+CHANGELOG
+=========
+
+v0.1:
+* initial release including basic services for equipment, material, events and configuration of the app.
+* using pouchdb as local storage
+
+
 1. introduction
 ===============
 

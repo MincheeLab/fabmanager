@@ -1,7 +1,7 @@
 <form name="formAdmin" novalidate>
   <ion-view title="Admin">
     <ion-nav-buttons side="right">
-      <button class="button button-clear" ng-click="config.save()" ng-disabled="formAdmin.$invalid">Save</button>
+      <button class="button button-clear" ng-click="save(config, presets)" ng-disabled="formAdmin.$invalid">Save</button>
     </ion-nav-buttons>
   </ion-view>
 
@@ -13,16 +13,16 @@
           <ion-list>
             <ion-item class="item-input item-floating-label">
               <span class="input-label">Name</span>
-              <input type="text" placeholder="Lab Name" ng-model="lab.name" required>
+              <input type="text" placeholder="Lab Name" ng-model="config.name" required>
             </ion-item>
             <div class="item item-divider">Contact</div>
             <ion-item class="item-input item-floating-label">
               <span class="input-label">Email</span>
-              <input type="text" placeholder="Email" ng-model="lab.contact.email" required>
+              <input type="email" placeholder="Email" ng-model="config.contact.email" required>
             </ion-item>
             <ion-item class="item-input item-floating-label">
               <span class="input-label">Website</span>
-              <input type="text" placeholder="Website" ng-model="lab.contact.website">
+              <input type="text" placeholder="Website" ng-model="config.contact.website">
             </ion-item>
           </ion-list>
         </ion-content>
@@ -32,11 +32,16 @@
       <ion-view>
         <ion-content>
           <ion-list>
-
+            <ion-toggle ng-model="config.live.status" toggle-class="toggle-balanced">Live server</ion-toggle>
+            <ion-item class="item-input item-floating-label" ng-show="config.live.status">
+              <span class="input-label">CouchDB Server URL</span>
+              <input type="url" ng-model="config.live.url" placeholder="CouchDB Server URL" ng-required="config.live.status">
+            </ion-item>
           </ion-list>
         </ion-content>
     </ion-tab>
 
+<!--
     <ion-tab title="Equipment" icon="ion-wrench">
       <ion-view>
         <ion-content>
@@ -45,12 +50,37 @@
           </ion-list>
         </ion-content>
     </ion-tab>
+-->
 
     <ion-tab title="Material" icon="ion-pricetags">
       <ion-view>
         <ion-content>
-          <ion-list>
+          <ion-list show-delete="true">
+            <ion-item class="item-divider">
+              Material Type
+            </ion-item>
+            <ion-item ng-repeat="key in presets.materialType">
+              {{ key }}
+              <ion-option-button class="button-assertive ion-minus-circled" ng-click="presets.materialType.splice($index,1)"></ion-option-button>
+              <ion-delete-button class="button-assertive ion-minus-circled" ng-click="presets.materialType.splice($index,1)"></ion-delete-button>
+            </ion-item>
+          </ion-list>
 
+
+          <ion-list can-swipe="true">
+           <ion-item class="item-divider">
+             Technical Information
+           </ion-item>
+            <div class="item item-input-inset">
+               <label class="item-input-wrapper">
+                <input type="text" placeholder="New Technical Key" ng-model="newTechPair">
+              </label>
+              <button class="button button-small" ng-click="presets.techPair.unshift(newTechPair)"> Add </button>
+            </div>
+            <ion-item ng-repeat="key in presets.techPair">
+              {{ key }}
+              <ion-option-button class="button-assertive ion-minus-circled" ng-click="presets.techPair.splice($index,1)"></ion-option-button>
+            </ion-item>
           </ion-list>
         </ion-content>
     </ion-tab>
@@ -58,8 +88,17 @@
     <ion-tab title="Events" icon="ion-android-calendar">
       <ion-view>
         <ion-content>
-          <ion-list>
-
+          <ion-list sshow-delete="true">
+            <div class="item item-input-inset">
+              <label class="item-input-wrapper">
+                <input type="text" placeholder="New Event Type" ng-model="newEventPair">
+              </label>
+              <button class="button button-small" ng-click="presets.eventType.unshift(newEventPair)"> Add </button>
+            </div>
+            <ion-item ng-repeat="key in presets.eventType">
+              {{ key }}
+              <ion-delete-button class="ion-minus-circled" ng-click="presets.eventType.splice($index,1)"></ion-delete-button>
+            </ion-item>
           </ion-list>
         </ion-content>
     </ion-tab>
