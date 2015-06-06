@@ -1,0 +1,26 @@
+<ion-view title="Bookings">
+  <ion-nav-buttons side="right">
+    <a ui-sref="app.booking_form({_id: collection.objRef._id, name: collection.objRef.name })" class="button button-icon button-clear ion-plus"></a>
+  </ion-nav-buttons>
+  <div class="bar bar-subheader">
+    <h2 class="title">{{ collection.objRef.name }}</h2>
+  </div>
+  <ion-content class="has-subheader">
+    <ion-list ng-show="collection.rows.length">
+      <div ng-repeat="item in collection.rows">
+        <ion-item class="item-divider">{{ item.from.date }} {{item.from.date | date:'mediumDate'}}</ion-item>
+      <ion-item>
+        {{ item.name }}
+      </ion-item>
+      </div>
+
+    </ion-list>
+
+    <div class="card" ng-hide="collection.rows.length">
+      <div class="item item-text-wrap">
+        No booking yet, you've got all your chances to get a slot...BOOK NOW!
+      </div>
+    </div>
+
+  </ion-content>
+</ion-view>

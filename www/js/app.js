@@ -137,18 +137,23 @@
       }
     })
 
-    .state('app.bookings_upcoming', {
-      url: '/bookings_upcoming/:id?name',
+    .state('app.bookings', {
+      url: '/bookings?_id&name',
       views: {
         'menuContent': {
-          templateUrl: 'components/booking/bookings-upcoming.html',
+          templateUrl: 'components/booking/bookings.html',
           controller: 'BookingsUpcomingCtrl'
         }
+      },
+      resolve: {
+        bookings: ['BookingCollection', '$stateParams', function(BookingCollection, $stateParams) {
+          return BookingCollection.getBookings($stateParams);
+        }]
       }
     })
 
-    .state('app.booking_new', {
-      url: '/booking_new/:id/?name',
+    .state('app.booking_form', {
+      url: '/booking_form?_id&name',
       views: {
         'menuContent': {
           templateUrl: 'components/booking/booking-form.html',
@@ -156,8 +161,8 @@
         }
       },
       resolve: {
-        equipment: ['BookingModel', function (BookingModel) {
-          return BookingModel.load({});
+        booking: ['BookingModel', '$stateParams', function (BookingModel, $stateParams) {
+          return BookingModel.load({}, {_id: $stateParams._id, name: $stateParams.name});
         }]
       }
     })

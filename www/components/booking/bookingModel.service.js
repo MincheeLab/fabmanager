@@ -19,11 +19,15 @@
       get: getElement,
       save: save,
       remove: remove,
+      changeStatus: changeStatus
     };
 
     return service;
 
-    function loadData(item) {
+    function loadData(item, objRef) {
+      if (objRef) {
+        item.objRef = objRef;
+      }
       if (angular.isObject(item.doc)) {
         return angular.extend(item.doc, this);
       }
@@ -38,8 +42,11 @@
     }
 
     function save() {
-      if (this._id) {
-        this._id = new Date().toJSON();
+      var date = this.from.date.toJSON().split('T')[0],
+          time = this.from.time.toJSON().split('T')[1]; //toISOString?
+      if (!this._id) {
+        this._id = this.objRef._id + '_' + date + 'T' + time;
+        this.status = 'pending';
       }
       var item = JSON.parse(JSON.stringify(this));
       return db.put(item)
@@ -50,6 +57,10 @@
 
     function remove() {
       return db.remove(this);
+    }
+
+    function changeStatus() {
+
     }
   }
 })();

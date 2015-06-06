@@ -30,13 +30,10 @@
 
     function getBookings(item) {
       var self = this;
-      var startId = item._id + new Date().toJSON();
-      console.log('newStartId', startId);
+      self.objRef = item;
       return db.allDocs({
         include_docs: true,
-        descending: true,
-        startkey: item._id + '\uffff',
-        //limit: 20
+        startkey: item._id + '_' + new Date().toJSON()
       }).then(function(docs) {
         return self.load(docs);
       });
