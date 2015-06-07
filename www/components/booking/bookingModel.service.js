@@ -42,9 +42,9 @@
     }
 
     function save() {
-      var date = this.from.date.toJSON().split('T')[0],
-          time = this.from.time.toJSON().split('T')[1]; //toISOString?
       if (!this._id) {
+        var date = this.from.date.toJSON().split('T')[0],
+          time = this.from.time.toJSON().split('T')[1]; //toISOString?
         this._id = this.objRef._id + '_' + date + 'T' + time;
         this.status = 'pending';
       }
@@ -60,7 +60,8 @@
     }
 
     function changeStatus() {
-
+      this.status = (this.status === 'pending') ? 'approved' : 'pending';
+      this.save();
     }
   }
 })();

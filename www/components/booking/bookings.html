@@ -6,15 +6,16 @@
     <h2 class="title">{{ collection.objRef.name }}</h2>
   </div>
   <ion-content class="has-subheader">
-    <ion-list ng-show="collection.rows.length">
-      <div ng-repeat="item in collection.rows">
+    <ion-list ng-show="collection.rows.length" can-swipe="true">
+      <div ng-repeat="item in collection.rows track by item._id">
         <ion-item class="item-divider" ng-show="isNewDate(item)">{{item.from.date | date:'mediumDate'}}</ion-item>
-      <ion-item class="item-icon-right">
-        <span class="item-note">{{item.status}}</span>
-        <h2>{{ item.name }}</h2>
-        <p>{{ item.from.time | date:'shortTime' }} for {{item.duration/60 }} hour</p>
-
-      </ion-item>
+        <ion-item class="item-icon-right ">
+          <span class="item-note" ng-show="item.status == 'pending'">{{item.status}}</span>
+          <h2>{{ item.name }}</h2>
+          <p>{{ item.from.time | date:'shortTime' }} for {{item.duration/60 }} hour</p>
+          <ion-option-button class="button-calm ion-checkmark" ng-click="item.changeStatus('approved')" ></ion-option-button>
+          <ion-option-button class="button-assertive ion-cross" ng-click="item.changeStatus('rejected')" ></ion-option-button>
+        </ion-item>
       </div>
 
     </ion-list>
