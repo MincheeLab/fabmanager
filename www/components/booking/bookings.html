@@ -8,9 +8,12 @@
   <ion-content class="has-subheader">
     <ion-list ng-show="collection.rows.length">
       <div ng-repeat="item in collection.rows">
-        <ion-item class="item-divider">{{ item.from.date }} {{item.from.date | date:'mediumDate'}}</ion-item>
-      <ion-item>
-        {{ item.name }}
+        <ion-item class="item-divider" ng-show="isNewDate(item)">{{item.from.date | date:'mediumDate'}}</ion-item>
+      <ion-item class="item-icon-right">
+        <span class="item-note">{{item.status}}</span>
+        <h2>{{ item.name }}</h2>
+        <p>{{ item.from.time | date:'shortTime' }} for {{item.duration/60 }} hour</p>
+
       </ion-item>
       </div>
 
