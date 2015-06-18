@@ -1,6 +1,6 @@
 # Manage My Lab
 
-(*) the name of the app is currently "Manage My Lab" but we are still looking for a better name, all suggestions are welcome (create an issue with the label 'codename' or vote for the best one by adding '+1' in comment for existing ones).
+(*) the name of the app is currently "Manage My Lab" but we are still looking for a better name. All suggestions are welcome (create an issue with the label 'codename' or vote for the best one by adding '+1' in comment for existing ones).
 
 ### CHANGELOG
 v0.1 (20150630) aka "minchee-flamboyant":
