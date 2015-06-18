@@ -13,8 +13,8 @@
           <span class="item-note" ng-show="item.status == 'pending'">{{item.status}}</span>
           <h2>{{ item.name }}</h2>
           <p>{{ item.from.time | date:'shortTime' }} for {{item.duration/60 }} hour</p>
-          <ion-option-button class="button-calm ion-checkmark" ng-click="item.changeStatus('approved')" ></ion-option-button>
-          <ion-option-button class="button-assertive ion-cross" ng-click="item.changeStatus('rejected')" ></ion-option-button>
+          <ion-option-button class="button-calm ion-checkmark" ng-click="item.changeStatus('approved')" ng-show="item.status == 'pending'"></ion-option-button>
+          <ion-option-button class="button-assertive ion-cross" ng-click="item.changeStatus('rejected')" ng-show="item.status == 'pending'"></ion-option-button>
         </ion-item>
       </div>
 

@@ -59,8 +59,8 @@
       return db.remove(this);
     }
 
-    function changeStatus() {
-      this.status = (this.status === 'pending') ? 'approved' : 'pending';
+    function changeStatus(status) {
+      this.status = status;
       this.save();
     }
   }

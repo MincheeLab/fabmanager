@@ -8,7 +8,6 @@
   ConfigCtrl.$inject = ['$scope', 'config', 'presets', 'ConfigService'];
 
   function ConfigCtrl($scope, config, presets, ConfigService) {
-
     $scope.config = config || ConfigService.loadConfig();
     $scope.presets = presets || ConfigService.loadPresets();
 

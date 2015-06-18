@@ -5,9 +5,9 @@
     .module('config')
     .controller('SetupCtrl', SetupCtrl);
 
-  SetupCtrl.$inject = ['$scope', 'ConfigService'];
+  SetupCtrl.$inject = ['$scope', 'Config'];
 
-  function SetupCtrl($scope, ConfigService) {
+  function SetupCtrl($scope, Config) {
 
   }
 })();

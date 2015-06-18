@@ -13,6 +13,11 @@
    */
   function EquipmentModel(pouchDB, ConfigService) {
     var db = pouchDB('equipment');
+    ConfigService.getConfig().then(function(config){
+      if (config.live.status) {
+         db.sync(config.live.url + '/equipment', { live: true, retry: true}).on('error', console.log.bind(console));;
+      }
+    });
 
     var service = {
       load: loadData,

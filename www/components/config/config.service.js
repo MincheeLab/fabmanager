@@ -3,15 +3,15 @@
 
   angular
     .module('config', ['pouchdb'])
-    .factory('ConfigService', ConfigService);
+    .factory('ConfigService', Config);
 
-  ConfigService.$inject = ['pouchDB'];
+  Config.$inject = ['pouchDB'];
 
   /**
-   * @desc ConfigService
+   * @desc Config
    *
    */
-  function ConfigService(pouchDB) {
+  function Config(pouchDB) {
     var db = pouchDB('config');
 
     //var remote = new PouchDB('https://...');
