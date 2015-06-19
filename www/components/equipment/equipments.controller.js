@@ -9,10 +9,17 @@
 
   function EquipmentsCtrl($scope, EquipmentCollection, $ionicLoading) {
     $ionicLoading.show();
-    EquipmentCollection.getList().then(function (docs) {
-      $scope.collection = docs;
-      $scope.equipments = docs.rows;
-      $ionicLoading.hide();
+
+    $scope.load = function () {
+      EquipmentCollection.getList().then(function (docs) {
+        $scope.collection = docs;
+        $scope.equipments = docs.rows;
+        $ionicLoading.hide();
+      });
+    };
+
+    $scope.$on('$ionicView.enter', function (e) {
+      $scope.load();
     });
   }
 })();

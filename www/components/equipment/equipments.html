@@ -16,7 +16,7 @@
           <p style="margin-top:0px">by {{ equipment.brand }}</p>
         </a>
       </div>
-      <div class="list card" ng-show="!collection.rows.length">
+      <div class="list card" ng-show="!collection.rows.length && collection">
         <div class="item item-body">
           No equipment found yet. Do you want to <a ui-sref="app.equipment_new">add some</a>?
         </div>

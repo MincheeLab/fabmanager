@@ -2,33 +2,32 @@
   'use strict';
 
   angular
-    .module('equipment', ['pouchdb', 'config', 'ngCordova'])
-    .factory('EquipmentModel', EquipmentModel);
+    .module('booking')
+    .factory('BookingModel', BookingModel);
 
-  EquipmentModel.$inject = ['pouchDB', 'ConfigService'];
+  BookingModel.$inject = ['pouchDB'];
 
   /**
-   * @desc EquipmentModel
+   * @desc BookingModel
    *
    */
-  function EquipmentModel(pouchDB, ConfigService) {
-    var db = pouchDB('equipment');
-    ConfigService.getConfig().then(function(config){
-      if (config.live.status) {
-         db.sync(config.live.url + '/equipment', { live: true, retry: true}).on('error', console.log.bind(console));;
-      }
-    });
+  function BookingModel(pouchDB) {
+    var db = pouchDB('booking');
 
     var service = {
       load: loadData,
       get: getElement,
       save: save,
       remove: remove,
+      changeStatus: changeStatus
     };
 
     return service;
 
-    function loadData(item) {
+    function loadData(item, objRef) {
+      if (objRef) {
+        item.objRef = objRef;
+      }
       if (angular.isObject(item.doc)) {
         return angular.extend(item.doc, this);
       }
@@ -43,8 +42,11 @@
     }
 
     function save() {
-      if (this._id) {
-        this._id = new Date().toJSON();
+      if (!this._id) {
+        var date = this.from.date.toJSON().split('T')[0],
+          time = this.from.time.toJSON().split('T')[1]; //toISOString?
+        this._id = this.objRef._id + '_' + date + 'T' + time;
+        this.status = 'pending';
       }
       var item = JSON.parse(JSON.stringify(this));
       return db.put(item)
@@ -55,6 +57,11 @@
 
     function remove() {
       return db.remove(this);
+    }
+
+    function changeStatus(status) {
+      this.status = status;
+      this.save();
     }
   }
 })();

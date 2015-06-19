@@ -1,0 +1,49 @@
+<form name="bookingForm" novalidate>
+  <ion-view title="">
+
+    <div class="bar bar-subheader" ng-show="booking.objRef.name">
+      <h2 class="title">New Booking for {{ booking.objRef.name }}</h2>
+    </div>
+
+    <ion-nav-buttons side="right">
+      <button class="button button-clear" ng-click="save(booking)" nng-disabled="bookingForm.$invalid">Save</button>
+    </ion-nav-buttons>
+
+    <ion-content ng-class="{'has-subheader': booking.objRef.name }">
+      <ion-item class="item-input item-floating-label">
+        <span class="input-label">Your Name</span>
+        <input type="text" ng-model="booking.name" placeholder="Your Name">
+      </ion-item>
+      <ion-item class="item-input item-floating-label">
+        <span class="input-label">Email</span>
+        <input type="email" ng-model="booking.email" placeholder="Your Email">
+      </ion-item>
+      <ion-item class="item-input item-floating-label">
+        <span class="input-label">Comment</span>
+        <textarea placeholder="Comment" ng-model="booking.comment"></textarea>
+      </ion-item>
+
+      <div class="row">
+        <div class="col">
+          <ion-item class="item-input item-floating-label" style="border:0;">
+            <span class="input-label">Day</span>
+            <input type="date" placeholder="Day" ng-model="booking.from.date">
+          </ion-item>
+        </div>
+        <div class="col">
+          <label class="item item-input item-stacked-label" style="border:0;">
+            <span class="input-label"></span>
+            <input type="time" placeholder="Time" ng-model="booking.from.time">
+          </label>
+        </div>
+      </div>
+
+      <ion-item class="item-divider">
+        Duration
+      </ion-item>
+      <ion-radio ng-model="booking.duration" ng-value="30">30 minutes</ion-radio>
+      <ion-radio ng-model="booking.duration" ng-value="60">1 hour</ion-radio>
+      <ion-radio ng-model="booking.duration" ng-value="120">2 hours</ion-radio>
+    </ion-content>
+  </ion-view>
+</form>

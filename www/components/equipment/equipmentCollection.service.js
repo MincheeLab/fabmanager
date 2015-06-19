@@ -5,13 +5,13 @@
     .module('equipment')
     .factory('EquipmentCollection', EquipmentCollection);
 
-  EquipmentCollection.$inject = ['pouchDB', 'EquipmentModel'];
+  EquipmentCollection.$inject = ['pouchDB', 'ConfigService', 'EquipmentModel'];
 
   /**
    * @desc EquipmentCollection
    *
    */
-  function EquipmentCollection(pouchDB, EquipmentModel) {
+  function EquipmentCollection(pouchDB, ConfigService, EquipmentModel) {
     var db = pouchDB('equipment');
 
     var service = {
@@ -51,7 +51,7 @@
 
     function removeModel(index) {
       var self = this;
-      this.rows[index].remove().then(function(){
+      this.rows[index].remove().then(function() {
         self.rows.splice(index, 1);
       });
     }

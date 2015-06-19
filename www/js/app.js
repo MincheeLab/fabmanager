@@ -3,9 +3,10 @@
   'use strict';
 
   angular
-    .module('fabman', ['ionic', 'starter.controllers', 'equipment', 'material', 'member', 'event', 'admin'])
+    .module('fabman', ['ionic', 'config', 'equipment', 'material', 'member', 'event', 'booking'])
 
   .run(function ($ionicPlatform) {
+
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -17,6 +18,9 @@
   })
 
   .config(function ($stateProvider, $urlRouterProvider) {
+
+    var defaultRoute = '/app/dashboard';
+
     $stateProvider
       .state('app', {
         url: '/app',
@@ -24,28 +28,48 @@
         templateUrl: 'templates/menu.html',
         controller: 'AppCtrl',
         resolve: {
-          presets: ['AdminService', function(AdminService) {
-            return AdminService.getPresets();
+          config: ['ConfigService', function (ConfigService) {
+            return ConfigService.getConfig();
+          }],
+          presets: ['ConfigService', function (ConfigService) {
+            return ConfigService.getPresets();
           }]
         }
       })
+
+    .state('wizard', {
+      url: '/setup',
+      templateUrl: 'components/config/setup.html',
+      controller: 'SetupCtrl'
+    })
+    //.state('wizard.step1',{})
+    //.state('wizard.step2', {})
+    //.state('wizard.step3', {})
 
     .state('app.about', {
       url: '/about',
       views: {
         'menuContent': {
-          templateUrl: 'components/admin/about.html',
+          templateUrl: 'templates/about.html',
         }
       }
     })
 
-    .state('app.admin', {
-      url: '/admin',
+    .state('app.config', {
+      url: '/config',
       views: {
         'menuContent': {
-          templateUrl: 'components/admin/admin.html',
-          controller: 'AdminCtrl'
+          templateUrl: 'components/config/config.html',
+          controller: 'ConfigCtrl'
         }
+      },
+      resolve: {
+        config: ['config', function (config) {
+          return config;
+        }],
+        presets: ['presets', function(presets) {
+          return presets;
+        }]
       }
     })
 
@@ -113,6 +137,36 @@
       }
     })
 
+    .state('app.bookings', {
+      url: '/bookings?_id&name',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/booking/bookings.html',
+          controller: 'BookingsUpcomingCtrl'
+        }
+      },
+      resolve: {
+        bookings: ['BookingCollection', '$stateParams', function(BookingCollection, $stateParams) {
+          return BookingCollection.getBookings($stateParams);
+        }]
+      }
+    })
+
+    .state('app.booking_form', {
+      url: '/booking_form?_id&name',
+      views: {
+        'menuContent': {
+          templateUrl: 'components/booking/booking-form.html',
+          controller: 'BookingFormCtrl'
+        }
+      },
+      resolve: {
+        booking: ['BookingModel', '$stateParams', function (BookingModel, $stateParams) {
+          return BookingModel.load({}, {_id: $stateParams._id, name: $stateParams.name});
+        }]
+      }
+    })
+
     .state('app.materials', {
       url: '/materials/?refresh',
       views: {
@@ -122,7 +176,9 @@
         }
       },
       resolve: {
-        presets: function(presets) { return presets; }
+        presets: function (presets) {
+          return presets;
+        }
       }
     })
 
@@ -138,11 +194,13 @@
         material: ['MaterialModel', function (MaterialModel) {
           return MaterialModel.load({});
         }],
-        presets: function(presets) { return presets; }
+        presets: function (presets) {
+          return presets;
+        }
       }
     })
 
-      .state('app.events', {
+    .state('app.events', {
       url: '/events',
       views: {
         'menuContent': {
@@ -161,8 +219,10 @@
         }
       },
       resolve: {
-        event: ['EventModel', '$stateParams', function(EventModel, $stateParams) {
-          return EventModel.get($stateParams.id);
+        event: ['EventModel', '$stateParams', function (EventModel, $stateParams) {
+          EventModel.get($stateParams.id).then(function (e) {
+            return EventModel.load(e);
+          });
         }]
       }
     })
@@ -176,12 +236,12 @@
         }
       },
       resolve: {
-        event: ['EventModel', function(EventModel) {
+        event: ['EventModel', function (EventModel) {
           return EventModel.load({});
         }]
       }
     })
-      
+
     .state('app.material_edit', {
       url: '/material_edit/:id',
       views: {
@@ -217,7 +277,6 @@
       }
     });
 
-    $urlRouterProvider.otherwise('/app/dashboard');
-
+    $urlRouterProvider.otherwise(defaultRoute);
   });
 })();
