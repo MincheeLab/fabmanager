@@ -52,8 +52,15 @@
 
         <label class="item item-input item-stacked-label">
           <span class="input-label">Description</span>
-          <textarea placeholder="Write some description"></textarea>
+          <textarea placeholder="Write some description" ng-model="e.description"></textarea>
         </label>
+        
+        <label class="item item-input item-stacked-label">
+          <span class="input-label">Prerequisite</span>
+          <textarea placeholder="Some information for participant to know what to prepare" ng-model="e.prerequisite"></textarea>
+        </label>
+        
+        <a class="button button-block" ng-click="selectPicture()">Add a photo</a>
       </div>
     </ion-content>
     <ion-footer-bar>

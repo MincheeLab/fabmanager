@@ -10,7 +10,7 @@
         <div class="list card" ng-repeat="e in upcoming">
 
           <a class="item item-image"  ui-sref="app.event_show({id: e._id })">
-            <img ng-src="{{ e.cover_image.data }}">
+            <img ng-src="data:image/jpg;base64,{{ e._attachments['image.jpeg'].data }}">
           </a>
 
           <div class="item">

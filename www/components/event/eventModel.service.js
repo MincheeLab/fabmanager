@@ -11,17 +11,29 @@ function EventModel(pouchDB) {
 
   // debug info only
   db.info().then(function (info) {
-    console.log(info);
   });
-
+    
   return {
     load: loadData,
     get: getElement,
     save: save,
     remove: remove,
-    getDateTime: getDateTime
+    getDateTime: getDateTime,
+    join: join,
+    isJoined: isJoined
   };
-
+  
+  function join(email) {
+    if (!this.isJoined()) {
+      this.participants.push(email);
+      return this.save(); 
+    }
+  }
+  
+  function isJoined(email) {
+    return _.includes(this.participants, email);
+  }
+  
   function getDateTime() {
     if (!this.from) return '';
     var dd = new Date(this.from.date).getDate();
@@ -35,15 +47,20 @@ function EventModel(pouchDB) {
   
   function loadData(obj) {
     if (angular.isObject(obj.doc)) {
+      obj.doc.participants = [];
       return angular.extend(obj.doc, this);
     }
+    obj.participants = [];
     return angular.extend(obj, this);
   }
 
   function getElement(id) {
-    return db.get(id);
+    var self = this;
+    return db.get(id, {attachments: true}).then(function(item) {
+      return self.load(item);
+    });
   }
-
+  
   function save() {
     var obj = JSON.parse(JSON.stringify(this));
     if (this._id) {

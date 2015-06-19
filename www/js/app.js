@@ -162,9 +162,7 @@
       },
       resolve: {
         event: ['EventModel', '$stateParams', function(EventModel, $stateParams) {
-          EventModel.get($stateParams.id).then(function(e) {
-            return EventModel.load(e);
-          });
+          return EventModel.get($stateParams.id);
         }]
       }
     })

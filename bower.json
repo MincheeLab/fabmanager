@@ -8,7 +8,8 @@
     "pouchdb": "3.6.0",
     "angular-pouchdb": "~2.1.0",
     "ngCordova": "~0.1.17-alpha",
-    "checklist-model": "~0.2.4"
+    "checklist-model": "~0.2.4",
+    "lodash": "~3.9.3"
   },
   "resolutions": {
     "pouchdb": "3.6.0"

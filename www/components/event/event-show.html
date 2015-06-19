@@ -3,7 +3,7 @@
     <div class="card">
 
       <a class="item item-image"  ui-sref="app.event_show({id: e._id })">
-        <img ng-src="{{ e.cover_image.data }}">
+        <img ng-src="data:image/jpg;base64,{{ e._attachments['image.jpeg'].data }}">
       </a>
 
       <div class="item">
@@ -12,6 +12,28 @@
           <div><i class="ion-ios-location" style="margin-left: 2px;margin-right: 2px;"></i> {{ e.location.name }}</div>
       </div>
 
+      <div class="item">
+        <h2>Description</h2>
+        {{ e.description }}
+      </div>
+      
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <a class="tab-item" href="#" ng-show="!e.isJoined(email)" ng-click="e.join(email)">
+          <i class="icon ion-checkmark"></i>
+          JOIN
+        </a>
+        
+        <a class="tab-item" href="#" ng-show="e.isJoined(email)" style="color: green;">
+          <i class="icon ion-checkmark"></i>
+          JOINED
+        </a>
+        
+        <a class="tab-item" href="#" style="color: blue;">
+          <i class="icon ion-share"></i>
+          INVITE
+        </a>
+      </div>
+    
     </div>
   </ion-content>
 </ion-view>
