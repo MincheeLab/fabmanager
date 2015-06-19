@@ -1,0 +1,34 @@
+<ion-view title="{{ equipment.model }}">
+  <ion-content>
+    <div class="list card">
+      <img src="img/epilogfusion32.jpg" class="full-image">
+      <div class="item item-body">
+        <p style="float:right" ng-show="equipment.code">{{ equipment.code }}</p>
+        <h2 style="margin-bottom:5px">{{ equipment.model }}</h2>
+        <p style="margin-top:0px">by {{ equipment.brand }}</p>
+        <p> Available:
+          <i class="icon" ng-class="{ 'ion-toggle-filled': equipment.doc.availability, 'ion-toggle' : !equipment.doc.availability }"></i>
+        </p>
+        <p>{{ equipment.description }}</p>
+      </div>
+
+      <div class="item tabs tabs-secondary tabs-icon-left">
+        <button class="tab-item button button-clear" ng-click="showConfirm()">
+          <i class="icon ion-close-round"></i> Delete
+        </button>
+        <a class="tab-item" ui-sref="app.equipment_edit({id: equipment._id})">
+          <i class="icon ion-edit"></i> Edit
+        </a>
+        <!--
+    <a class="tab-item" href="#">
+      <i class="icon ion-chatbox"></i>
+      Comment
+    </a>
+-->
+        <a class="tab-item" ui-sref="app.bookings({ _id: equipment._id, name: equipment.model })">
+          <i class="icon ion-android-calendar"></i> Book
+        </a>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

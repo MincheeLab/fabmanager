@@ -1,0 +1,88 @@
+<form name="materialForm" novalidate>
+  <ion-view>
+    <ion-nav-buttons side="right">
+      <input type="submit" class="button button-icon button-clear" ng-click="save(material)" ng-disabled="materialForm.$invalid" value="Save">
+    </ion-nav-buttons>
+  </ion-view>
+
+  <ion-tabs class="tabs-stripped tabs-icon-top tabs-positive tabs-top">
+
+    <ion-tab title="Info" icon="ion-ios-information">
+      <ion-view>
+        <ion-content>
+          <ion-list>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Material Type
+              </div>
+              <select ng-model="material.type" ng-options="label for label in presets.materialType" required>
+                <option>...</option>
+              </select>
+            </label>
+            <label class="item item-input item-select">
+              <div class="input-label">
+                Color
+              </div>
+              <select ng-model="material.color" ng-options="label for label in presets.materialColor">
+                <option value="">...</option>
+              </select>
+            </label>
+            <label class="item item-input item-floating-label">
+              <span class="input-label">Quantity</span>
+              <input type="text" placeholder="Quantity" ng-model="material.quantity" required>
+            </label>
+            <div class="item item-divider">
+              Usage
+            </div>
+            <ion-checkbox ng-repeat="item in presets.materialUsage" checklist-model="material.usage" checklist-value="item" required>{{item}}</ion-checkbox>
+          </ion-list>
+        </ion-content>
+    </ion-tab>
+
+    <ion-tab title="Tech" icon="ion-android-options">
+      <ion-view>
+        <ion-content>
+          <ion-list>
+            <label class="item item-input item-floating-label" ng-repeat="(k, v) in material.techPair">
+              <span class="input-label">{{k}}</span>
+              <input type="text" ng-model="material.techPair[k]" placeholder="{{k}}" value="{{v}}">
+            </label>
+            <label class="item item-input item-select item-icon-left">
+
+              <div class="input-label">
+                <!--             <i class="icon ion-plus"></i> -->
+                <!--             &nbsp; &nbsp; &nbsp; &nbsp;-->
+                Add a Technical Information
+              </div>
+              <select ng-model="techPair" ng-options="label for label in presets.techPair" ng-change="material.addKeyPair('techPair',techPair)">
+                <option>...pick one...</option>
+              </select>
+            </label>
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+
+    <ion-tab title="Finance" icon="ion-social-bitcoin">
+      <ion-view>
+        <ion-content>
+          <ion-list>
+           <ion-item class="item-input item-select">
+             <span class="input-label">Add a Financial Key</span>
+             <select ng-model="financialPair" ng-options="label for label in presets.financialPair" ng-change="material.addKeyPair('financialPair',financialPair)">
+                <option value="">...</option>
+              </select>
+           </ion-item>
+
+              <label class="item item-input item-floating-label" ng-repeat="(k, v) in material.financialPair">
+                <span class="input-label">{{k}}</span>
+                <input type="text" ng-model="material.techPair[k]" placeholder="{{k}}" value="{{v}}">
+              </label>
+
+          </ion-list>
+        </ion-content>
+      </ion-view>
+    </ion-tab>
+
+  </ion-tabs>
+</form>

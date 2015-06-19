@@ -1,0 +1,7 @@
+/* Empty. Add your own CSS if you like */
+h3 {
+  small {
+    font-size: 0.8em;
+    color: darkgrey;
+  }
+}
